@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.db
+venv/
+.env
+
+# Node
+node_modules/
+dist/
+.vite/
+*.log
