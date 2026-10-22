@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 440" width="100%" height="440">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080e0a" />
+      <stop offset="100%" stop-color="#050806" />
+    </linearGradient>
+
+    <style>
+      @keyframes shieldPulse {
+        0%, 100% { filter: drop-shadow(0 0 2px #10b981); }
+        50% { filter: drop-shadow(0 0 12px #34d399); }
+      }
+      @keyframes dataFlow {
+        from { stroke-dashoffset: 20; }
+        to { stroke-dashoffset: 0; }
+      }
+      .shield-anim { animation: shieldPulse 3s ease-in-out infinite; }
+      .data-stream { stroke-dasharray: 4 4; animation: dataFlow 1s linear infinite; }
+    </style>
+  </defs>
+
+  <rect width="940" height="440" rx="16" fill="url(#bgGrad4)" stroke="#1a2e22" stroke-width="2" />
+
+  <!-- Title -->
+  <text x="40" y="44" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#f1f5f9">
+    Tenant Isolation &amp; Approved Source Bounding (IS 01, IS 02, IS 06 &amp; IS 33)
+  </text>
+  <text x="40" y="66" font-family="'JetBrains Mono', monospace" font-size="11" fill="#64748b">
+    Zero Cross-Tenant Contamination • Candidate Quarantine • Source Conflict Routing
+  </text>
+
+  <!-- Tenant Boundary Outer Container (Left 2/3) -->
+  <g transform="translate(40, 95)">
+    <rect width="570" height="250" rx="12" fill="#09140f" stroke="#10b981" stroke-width="1.5" stroke-dasharray="8 4" />
+    <text x="16" y="24" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#34d399">
+      TENANT BOUNDARY: tenant-nadi-naturals-01 (IS 01)
+    </text>
+
+    <!-- Source Ingestion & Quarantine (Left inner) -->
+    <g transform="translate(16, 40)">
+      <rect width="250" height="90" rx="8" fill="#131e17" stroke="#253e2f" />
+      <text x="12" y="22" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#cbd5e1">
+        Candidate Upload Quarantine
+      </text>
+      <text x="12" y="40" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94a3b8">
+        • Unvetted PDFs / Briefs
+      </text>
+      <text x="12" y="55" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94a3b8">
+        • EXCLUDED from live retrieval
+      </text>
+      <text x="12" y="74" font-family="'JetBrains Mono', monospace" font-size="9" fill="#f59e0b">
+        Status: CANDIDATE (IS 02)
+      </text>
+    </g>
+
+    <!-- Approved Source Library (Right inner) -->
+    <g transform="translate(300, 40)">
+      <rect width="250" height="90" rx="8" fill="#0d2417" stroke="#10b981" />
+      <text x="12" y="22" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#a7f3d0">
+        Approved Source Library
+      </text>
+      <text x="12" y="40" font-family="'JetBrains Mono', monospace" font-size="9" fill="#e2e8f0">
+        • Owner Sign-off + Version
+      </text>
+      <text x="12" y="55" font-family="'JetBrains Mono', monospace" font-size="9" fill="#e2e8f0">
+        • Active Validity Window
+      </text>
+      <text x="12" y="74" font-family="'JetBrains Mono', monospace" font-size="9" fill="#34d399">
+        Status: AUTHORITATIVE
+      </text>
+    </g>
+
+    <!-- Transition arrow between Quarantine and Approved -->
+    <path d="M 266 85 L 300 85" fill="none" stroke="#10b981" stroke-width="2" class="data-stream" />
+    <polygon points="300,85 292,80 292,90" fill="#10b981" />
+
+    <!-- Source Conflict Detector (Bottom inner) -->
+    <g transform="translate(16, 145)">
+      <rect width="534" height="85" rx="8" fill="#1a140b" stroke="#f59e0b" stroke-width="1.5" />
+      <text x="16" y="24" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#fbbf24">
+        Source Conflict Resolution Engine (IS 33)
+      </text>
+      <text x="16" y="44" font-family="'JetBrains Mono', monospace" font-size="10" fill="#fde68a">
+        DETECTION: Formulation Spec v2.1 (98.5% Organic) vs Legacy Brief (100% Organic)
+      </text>
+      <text x="16" y="64" font-family="'Inter', sans-serif" font-size="10" fill="#e2e8f0">
+        Behavior: Halts automated model guessing. Emits conflict task &amp; routes to Brand Owner Priya Nair.
+      </text>
+    </g>
+  </g>
+
+  <!-- Flow into Bounded Evidence Packet -->
+  <path d="M 610 180 L 670 180" fill="none" stroke="#38bdf8" stroke-width="2.5" class="data-stream" />
+  <polygon points="675,180 665,175 665,185" fill="#38bdf8" />
+
+  <!-- Bounded Evidence Packet & Model Box (Right 1/3) -->
+  <g transform="translate(675, 95)">
+    <rect width="225" height="250" rx="12" fill="#091824" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="16" y="26" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#7dd3fc">
+      BOUNDED EVIDENCE
+    </text>
+
+    <g transform="translate(12, 42)">
+      <rect width="201" height="65" rx="6" fill="#061019" stroke="#163447" />
+      <text x="10" y="18" font-family="'JetBrains Mono', monospace" font-size="9" fill="#38bdf8">EVIDENCE PACKET (IS 06)</text>
+      <text x="10" y="34" font-family="'JetBrains Mono', monospace" font-size="9" fill="#cbd5e1">• Exact Source ID &amp; Version</text>
+      <text x="10" y="48" font-family="'JetBrains Mono', monospace" font-size="9" fill="#cbd5e1">• Bounded Section &amp; Excerpt</text>
+    </g>
+
+    <g transform="translate(12, 118)">
+      <rect width="201" height="110" rx="6" fill="#061019" stroke="#163447" />
+      <text x="10" y="18" font-family="'Inter', sans-serif" font-size="10" font-weight="700" fill="#f43f5e">
+        SANDBOXED LLM RULES
+      </text>
+      <text x="10" y="36" font-family="'Inter', sans-serif" font-size="9" fill="#94a3b8">• Zero Cross-Tenant Access</text>
+      <text x="10" y="52" font-family="'Inter', sans-serif" font-size="9" fill="#94a3b8">• Zero Authority to Publish</text>
+      <text x="10" y="68" font-family="'Inter', sans-serif" font-size="9" fill="#94a3b8">• Bounded to Excerpts</text>
+      <text x="10" y="84" font-family="'Inter', sans-serif" font-size="9" fill="#94a3b8">• Must Abstain on Gaps</text>
+      <text x="10" y="100" font-family="'JetBrains Mono', monospace" font-size="9" fill="#10b981">
+        Citations Verified 100%
+      </text>
+    </g>
+  </g>
+
+  <!-- Bottom Explanatory Banner -->
+  <g transform="translate(40, 365)">
+    <rect width="860" height="48" rx="10" fill="#0a140f" stroke="#172b1f" />
+    <text x="24" y="24" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">
+      Enterprise Knowledge Security Guarantee:
+    </text>
+    <text x="24" y="40" font-family="'Inter', sans-serif" font-size="11" fill="#94a3b8">
+      Candidate sources never leak into live reviews, tenant queries are cryptographically segregated, and conflicting policies require human reconciliation.
+    </text>
+  </g>
+</svg>

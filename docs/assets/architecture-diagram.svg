@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="100%" height="460">
+  <defs>
+    <linearGradient id="panelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e1713" />
+      <stop offset="100%" stop-color="#09100d" />
+    </linearGradient>
+
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#34d399" />
+    </linearGradient>
+
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <style>
+      @keyframes flowRight {
+        from { stroke-dashoffset: 40; }
+        to { stroke-dashoffset: 0; }
+      }
+      @keyframes pulseBox {
+        0%, 100% { stroke: #1e3a2b; }
+        50% { stroke: #10b981; }
+      }
+      @keyframes floatData {
+        0% { transform: translate(0, 0); opacity: 0.2; }
+        50% { opacity: 1; }
+        100% { transform: translate(160px, 0); opacity: 0.2; }
+      }
+      .flow-line { stroke-dasharray: 6 6; animation: flowRight 1.5s linear infinite; }
+      .box-active { animation: pulseBox 3s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="920" height="460" rx="16" fill="#070c09" stroke="#172b1f" stroke-width="2" />
+
+  <!-- Diagram Title -->
+  <text x="40" y="44" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#f1f5f9">
+    Architecture Blueprint: Monolith Services &amp; Execution Pipeline
+  </text>
+  <text x="40" y="66" font-family="'JetBrains Mono', monospace" font-size="11" fill="#64748b">
+    IS 01–54 Service Boundaries • Strict Tenant Isolation • Relational Canonical Store
+  </text>
+
+  <!-- TIER 1: Presentation & Authoring Studio (Left) -->
+  <g transform="translate(40, 95)">
+    <rect width="210" height="325" rx="12" fill="url(#panelGrad)" stroke="#1e3a2b" stroke-width="1.5" />
+    <rect width="210" height="34" rx="12" fill="#0f2118" />
+    <text x="16" y="22" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#34d399">
+      PRESENTATION LAYER
+    </text>
+    <text x="16" y="55" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">
+      React 19 + TypeScript Studio
+    </text>
+
+    <!-- Sub-boxes -->
+    <g transform="translate(14, 70)">
+      <rect width="182" height="46" rx="6" fill="#0a120e" stroke="#1a3325" />
+      <text x="10" y="20" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">Pre-Publication Editor</text>
+      <text x="10" y="36" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">Autosave &amp; SHA-256 Hash</text>
+    </g>
+
+    <g transform="translate(14, 125)">
+      <rect width="182" height="46" rx="6" fill="#0a120e" stroke="#1a3325" />
+      <text x="10" y="20" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">Findings &amp; Patch Stream</text>
+      <text x="10" y="36" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">1-Click Replacement Diff</text>
+    </g>
+
+    <g transform="translate(14, 180)">
+      <rect width="182" height="46" rx="6" fill="#0a120e" stroke="#1a3325" />
+      <text x="10" y="20" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">Indic Voice &amp; TTS</text>
+      <text x="10" y="36" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">Web Speech &amp; Transcripts</text>
+    </g>
+
+    <g transform="translate(14, 235)">
+      <rect width="182" height="46" rx="6" fill="#0a120e" stroke="#1a3325" />
+      <text x="10" y="20" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#cbd5e1">Approval Sign-Off Gate</text>
+      <text x="10" y="36" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">Cryptographic Version Lock</text>
+    </g>
+  </g>
+
+  <!-- Flow 1: Client to API -->
+  <path d="M 250 240 L 320 240" fill="none" stroke="#10b981" stroke-width="2.5" class="flow-line" />
+  <polygon points="325,240 315,235 315,245" fill="#10b981" />
+
+  <!-- TIER 2: API Gateway & Orchestrator (Center-Left) -->
+  <g transform="translate(325, 95)">
+    <rect width="230" height="325" rx="12" fill="url(#panelGrad)" stroke="#1e3a2b" stroke-width="1.5" class="box-active" />
+    <rect width="230" height="34" rx="12" fill="#0f2118" />
+    <text x="16" y="22" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#38bdf8">
+      API &amp; ORCHESTRATION
+    </text>
+
+    <!-- Sub-boxes -->
+    <g transform="translate(14, 50)">
+      <rect width="202" height="46" rx="6" fill="#081410" stroke="#1a3325" />
+      <text x="10" y="20" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">FastAPI OpenAPI Layer</text>
+      <text x="10" y="36" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">IS 25 Error Taxonomy &amp; IDs</text>
+    </g>
+
+    <g transform="translate(14, 105)">
+      <rect width="202" height="46" rx="6" fill="#081410" stroke="#1a3325" />
+      <text x="10" y="20" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Dependency Orchestrator</text>
+      <text x="10" y="36" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">9-Stage Execution Graph</text>
+    </g>
+
+    <g transform="translate(14, 160)">
+      <rect width="202" height="46" rx="6" fill="#081410" stroke="#1a3325" />
+      <text x="10" y="20" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">State Machine Engine</text>
+      <text x="10" y="36" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">IS 13 Server-Enforced</text>
+    </g>
+
+    <g transform="translate(14, 215)">
+      <rect width="202" height="46" rx="6" fill="#081410" stroke="#1a3325" />
+      <text x="10" y="20" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Tenant Security Gate</text>
+      <text x="10" y="36" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">Auth Membership Derivation</text>
+    </g>
+
+    <g transform="translate(14, 270)">
+      <rect width="202" height="42" rx="6" fill="#081410" stroke="#1a3325" />
+      <text x="10" y="18" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Audit Logger (IS 32)</text>
+      <text x="10" y="32" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">Immutable Event Stream</text>
+    </g>
+  </g>
+
+  <!-- Flow 2: Orchestrator to Engines -->
+  <path d="M 555 180 L 635 180" fill="none" stroke="#38bdf8" stroke-width="2.5" class="flow-line" />
+  <polygon points="640,180 630,175 630,185" fill="#38bdf8" />
+
+  <!-- Flow 3: Orchestrator to Database -->
+  <path d="M 555 315 L 635 315" fill="none" stroke="#f59e0b" stroke-width="2.5" class="flow-line" />
+  <polygon points="640,315 630,310 630,320" fill="#f59e0b" />
+
+  <!-- TIER 3A: Domain Engines (Top Right) -->
+  <g transform="translate(640, 95)">
+    <rect width="240" height="155" rx="12" fill="url(#panelGrad)" stroke="#1e3a2b" stroke-width="1.5" />
+    <rect width="240" height="30" rx="12" fill="#0f2118" />
+    <text x="14" y="20" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#10b981">
+      INSPECTION ENGINES
+    </text>
+
+    <g transform="translate(10, 38)">
+      <rect width="220" height="32" rx="5" fill="#081410" stroke="#162e21" />
+      <text x="8" y="20" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#a7f3d0">
+        Deterministic Policy Engine (IS 04)
+      </text>
+    </g>
+
+    <g transform="translate(10, 75)">
+      <rect width="220" height="32" rx="5" fill="#081410" stroke="#162e21" />
+      <text x="8" y="20" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#a7f3d0">
+        RAG Bounded Claims &amp; Tone (IS 06)
+      </text>
+    </g>
+
+    <g transform="translate(10, 112)">
+      <rect width="220" height="32" rx="5" fill="#081410" stroke="#162e21" />
+      <text x="8" y="20" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#a7f3d0">
+        Logo Geometry &amp; WCAG 2.1 (IS 10)
+      </text>
+    </g>
+  </g>
+
+  <!-- TIER 3B: Canonical Relational Store (Bottom Right) -->
+  <g transform="translate(640, 265)">
+    <rect width="240" height="155" rx="12" fill="url(#panelGrad)" stroke="#1e3a2b" stroke-width="1.5" />
+    <rect width="240" height="30" rx="12" fill="#0f2118" />
+    <text x="14" y="20" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#f59e0b">
+      CANONICAL REPOSITORY (ADR 002)
+    </text>
+
+    <g transform="translate(10, 38)">
+      <rect width="220" height="32" rx="5" fill="#081410" stroke="#162e21" />
+      <text x="8" y="20" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#fde68a">
+        Workspaces &amp; Immutable Versions
+      </text>
+    </g>
+
+    <g transform="translate(10, 75)">
+      <rect width="220" height="32" rx="5" fill="#081410" stroke="#162e21" />
+      <text x="8" y="20" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#fde68a">
+        Approved Sources &amp; Facts Register
+      </text>
+    </g>
+
+    <g transform="translate(10, 112)">
+      <rect width="220" height="32" rx="5" fill="#081410" stroke="#162e21" />
+      <text x="8" y="20" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#fde68a">
+        Approvals (SHA-256) &amp; Audit Events
+      </text>
+    </g>
+  </g>
+</svg>
