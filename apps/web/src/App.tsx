@@ -37,6 +37,28 @@ const CHANNEL_LIMITS: Record<string, { maxChars: number; label: string }> = {
   print: { maxChars: 500, label: 'Packaging / Label (500 chars max)' }
 };
 
+const TAB_BACKGROUNDS: Record<string, string> = {
+  welcome: '/backgrounds/bg-welcome.jpg',
+  studio: '/backgrounds/bg-studio.svg',
+  queue: '/backgrounds/bg-queue.svg',
+  sources: '/backgrounds/bg-sources.svg',
+  assets: '/backgrounds/bg-assets.svg',
+  analytics: '/backgrounds/bg-analytics.svg',
+  audit: '/backgrounds/bg-audit.svg',
+  settings: '/backgrounds/bg-settings.svg',
+};
+
+const TAB_THEME_LABELS: Record<string, { label: string; motif: string }> = {
+  welcome: { label: 'Ayurvedic Botanical Luxury', motif: 'High-Definition Generative Wallpaper' },
+  studio: { label: 'Precision Alignment Grid', motif: 'Governance Reticles & Drafting Lines' },
+  queue: { label: 'Telemetry Priority Conduits', motif: 'SLA Velocity Waves' },
+  sources: { label: 'Sacred Knowledge Filigree', motif: 'Master Claims Graph' },
+  assets: { label: 'Chromatic Spectrum & Golden Spiral', motif: 'Visual Geometry Guides' },
+  analytics: { label: 'Radar Telemetry Network', motif: 'Compliance Vectors' },
+  audit: { label: 'Cryptographic Hex Lattice', motif: 'SHA-256 Immutable Seals' },
+  settings: { label: 'PCB Governance Traces', motif: 'Policy Bus Matrices' },
+};
+
 export default function App() {
   // Navigation & Workspace State
   const [activeTab, setActiveTab] = useState<'welcome' | 'studio' | 'queue' | 'sources' | 'assets' | 'analytics' | 'audit' | 'settings'>('welcome');
@@ -554,9 +576,27 @@ export default function App() {
   }) || [];
 
   return (
-    <div className="min-h-screen bg-[#070c09] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
+    <div className="relative min-h-screen bg-[#070c09] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white overflow-hidden">
       {/* Restrained Completion Particle Effect (IS 22) */}
       <CelebrationFX active={showCelebration} onComplete={() => setShowCelebration(false)} />
+
+      {/* DYNAMIC PER-PAGE BACKGROUND LAYER WITH CROSS-FADE */}
+      <div
+        key={activeTab}
+        aria-hidden="true"
+        className="fixed inset-0 pointer-events-none z-0 bg-cover bg-center bg-no-repeat animate-fadeIn transition-all duration-700"
+        style={{
+          backgroundImage: `url(${TAB_BACKGROUNDS[activeTab] || '/backgrounds/bg-studio.svg'})`,
+          opacity: activeTab === 'welcome' ? 0.28 : 0.45,
+          mixBlendMode: activeTab === 'welcome' ? 'normal' : 'screen',
+        }}
+      />
+
+      {/* OBSIDIAN VIGNETTE (WCAG 2.1 AA COMPLIANCE OVERLAY) */}
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-b from-[#070c09]/80 via-[#070c09]/30 to-[#070c09]/90 backdrop-blur-[0.5px]"
+      />
 
       {/* Toast Notification */}
       {toast && (
@@ -679,6 +719,13 @@ export default function App() {
         </div>
 
         <div className="flex items-center space-x-2 shrink-0">
+          {/* Active Background Theme Indicator */}
+          <div className="hidden xl:flex items-center space-x-2 text-[10px] font-mono text-emerald-400/90 bg-[#0c1611]/90 px-3 py-1.5 rounded-lg border border-emerald-900/40">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-slate-400">Background:</span>
+            <span className="text-emerald-300 font-semibold">{TAB_THEME_LABELS[activeTab]?.label || 'Brand Standard'}</span>
+          </div>
+
           <button
             onClick={() => setShowUploadModal(true)}
             className="text-xs text-slate-300 hover:text-emerald-300 flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-[#213f2f] bg-[#0e1d15] transition-colors"
@@ -699,7 +746,7 @@ export default function App() {
       </nav>
 
       {/* MAIN VIEW CONTENT */}
-      <main className="flex-1 overflow-auto bg-[#070c09]">
+      <main className="relative z-10 flex-1 overflow-auto bg-transparent">
         {/* TAB 0: WELCOME & TOUR PAGE */}
         {activeTab === 'welcome' && (
           <WelcomePage

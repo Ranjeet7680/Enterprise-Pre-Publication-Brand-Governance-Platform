@@ -30,15 +30,23 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#070c09] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-transparent text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
       {/* Hero Section */}
-      <section className="relative px-6 py-20 lg:py-28 overflow-hidden border-b border-[#182e22]">
+      <section className="relative px-6 py-20 lg:py-28 overflow-hidden border-b border-[#182e22]/70">
+        {/* Generative AI Atmospheric Wallpaper Backdrop */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-40 mix-blend-luminosity filter saturate-150 contrast-125"
+          style={{ backgroundImage: 'url(/backgrounds/bg-welcome.jpg)' }}
+        />
+        {/* Dark Obsidian Gradient for Pure Readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#070c09]/80 via-[#070c09]/60 to-[#070c09] pointer-events-none" />
+
         {/* Ambient Glows */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-emerald-600/15 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-teal-500/10 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-5xl mx-auto text-center space-y-6 relative z-10">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#0d2117] border border-[#1b3d2c] text-xs font-mono text-emerald-400 shadow-xl">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#0d2117]/90 border border-[#1b3d2c] text-xs font-mono text-emerald-400 shadow-xl backdrop-blur-md">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span>BLUEPRINT v1.2 SPECIFICATION CERTIFIED</span>
           </div>

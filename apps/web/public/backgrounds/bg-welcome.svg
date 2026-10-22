@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="wGlow1" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#059669" stop-opacity="0.22" />
+      <stop offset="50%" stop-color="#047857" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="wGlow2" cx="75%" cy="65%" r="55%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.18" />
+      <stop offset="60%" stop-color="#064e3b" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="goldGlow" cx="50%" cy="40%" r="35%">
+      <stop offset="0%" stop-color="#d97706" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    </radialGradient>
+    <filter id="blurFilter">
+      <feGaussianBlur stdDeviation="40" />
+    </filter>
+  </defs>
+
+  <!-- Deep Obsidian Slate Background -->
+  <rect width="1920" height="1080" fill="#070c09" />
+
+  <!-- Ethereal Botanical Ambient Lighting -->
+  <circle cx="500" cy="300" r="450" fill="url(#wGlow1)" filter="url(#blurFilter)" />
+  <circle cx="1450" cy="700" r="500" fill="url(#wGlow2)" filter="url(#blurFilter)" />
+  <circle cx="960" cy="450" r="380" fill="url(#goldGlow)" filter="url(#blurFilter)" />
+
+  <!-- Subtle Botanical Leaf Silhouette Filaments -->
+  <g stroke="#10b981" stroke-width="1.2" fill="none" opacity="0.06">
+    <!-- Stylized Amla / Fern Fronds Left -->
+    <path d="M 0 400 Q 250 350, 400 600 T 700 800" />
+    <path d="M 120 420 Q 220 380, 280 480" />
+    <path d="M 220 480 Q 320 420, 380 540" />
+    <path d="M 320 540 Q 420 480, 480 620" />
+    <path d="M 420 620 Q 520 550, 580 700" />
+
+    <!-- Stylized Lotus / Botanical Filament Right -->
+    <path d="M 1920 600 Q 1650 500, 1500 750 T 1200 950" />
+    <path d="M 1800 620 Q 1700 560, 1620 660" />
+    <path d="M 1680 680 Q 1580 610, 1500 730" />
+    <path d="M 1550 740 Q 1450 670, 1380 810" />
+  </g>
+
+  <!-- Subtle Star dust particles -->
+  <g fill="#34d399" opacity="0.35">
+    <circle cx="280" cy="180" r="2" />
+    <circle cx="420" cy="290" r="1.5" />
+    <circle cx="750" cy="140" r="2" />
+    <circle cx="1180" cy="220" r="1.5" />
+    <circle cx="1340" cy="150" r="2.5" />
+    <circle cx="1620" cy="310" r="1.5" />
+    <circle cx="890" cy="780" r="2" />
+    <circle cx="1520" cy="840" r="1.5" />
+    <circle cx="340" cy="720" r="2" />
+  </g>
+</svg>

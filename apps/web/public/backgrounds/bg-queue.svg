@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="queueTealGlow" cx="20%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.16" />
+      <stop offset="60%" stop-color="#0369a1" stop-opacity="0.04" />
+      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="queueEmeraldGlow" cx="80%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#059669" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#070c09" />
+  <circle cx="380" cy="540" r="600" fill="url(#queueTealGlow)" />
+  <circle cx="1540" cy="430" r="550" fill="url(#queueEmeraldGlow)" />
+
+  <!-- Flowing Priority Lanes -->
+  <g stroke="#0284c7" stroke-width="1.2" opacity="0.12" fill="none">
+    <path d="M 0 200 C 400 200, 600 280, 1000 280 S 1600 220, 1920 220" />
+    <path d="M 0 380 C 500 380, 800 460, 1200 460 S 1700 400, 1920 400" />
+    <path d="M 0 560 C 450 560, 750 640, 1150 640 S 1650 580, 1920 580" />
+    <path d="M 0 740 C 400 740, 700 820, 1100 820 S 1600 760, 1920 760" />
+  </g>
+
+  <!-- Glowing SLA Telemetry Dots -->
+  <g fill="#38bdf8" opacity="0.3">
+    <circle cx="480" cy="240" r="3" />
+    <circle cx="820" cy="420" r="2.5" />
+    <circle cx="1350" cy="590" r="3" />
+    <circle cx="950" cy="780" r="2.5" />
+  </g>
+</svg>

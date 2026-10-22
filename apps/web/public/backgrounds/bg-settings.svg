@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="settingsTealGlow" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#0d9488" stop-opacity="0.15" />
+      <stop offset="60%" stop-color="#115e59" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="pcbGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#13261c" stroke-width="0.5" opacity="0.3" />
+      <circle cx="25" cy="25" r="1" fill="#14b8a6" opacity="0.2" />
+    </pattern>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#070c09" />
+  <rect width="1920" height="1080" fill="url(#pcbGrid)" />
+  <circle cx="960" cy="540" r="700" fill="url(#settingsTealGlow)" />
+
+  <!-- PCB Circuit & Micro-Bus Traces -->
+  <g stroke="#14b8a6" stroke-width="1.2" opacity="0.14" fill="none">
+    <path d="M 100 200 H 300 L 400 300 H 800 L 850 350 V 600" />
+    <path d="M 100 250 H 280 L 380 350 H 750" />
+    <path d="M 1820 200 H 1620 L 1520 300 H 1120 L 1070 350 V 600" />
+    <path d="M 1820 250 H 1640 L 1540 350 H 1170" />
+
+    <path d="M 100 880 H 350 L 450 780 H 850" />
+    <path d="M 1820 880 H 1570 L 1470 780 H 1070" />
+
+    <!-- Center Control Socket Geometry -->
+    <rect x="860" y="440" width="200" height="200" rx="16" stroke="#2dd4bf" stroke-dasharray="6 6" />
+    <circle cx="960" cy="540" r="60" stroke="#14b8a6" />
+  </g>
+
+  <!-- Surface Mount Component Pads / Test Pins -->
+  <g fill="#2dd4bf" opacity="0.35">
+    <circle cx="300" cy="200" r="3.5" />
+    <circle cx="400" cy="300" r="3.5" />
+    <circle cx="850" cy="350" r="4" />
+    <circle cx="1620" cy="200" r="3.5" />
+    <circle cx="1520" cy="300" r="3.5" />
+    <circle cx="1070" cy="350" r="4" />
+    <circle cx="350" cy="880" r="3.5" />
+    <circle cx="450" cy="780" r="3.5" />
+    <circle cx="1570" cy="880" r="3.5" />
+    <circle cx="1470" cy="780" r="3.5" />
+    <!-- IC Lead Pads -->
+    <rect x="880" y="432" width="16" height="8" rx="2" />
+    <rect x="920" y="432" width="16" height="8" rx="2" />
+    <rect x="960" y="432" width="16" height="8" rx="2" />
+    <rect x="1000" y="432" width="16" height="8" rx="2" />
+    <rect x="880" y="640" width="16" height="8" rx="2" />
+    <rect x="920" y="640" width="16" height="8" rx="2" />
+    <rect x="960" y="640" width="16" height="8" rx="2" />
+    <rect x="1000" y="640" width="16" height="8" rx="2" />
+  </g>
+</svg>

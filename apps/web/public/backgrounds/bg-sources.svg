@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="sourcesGoldGlow" cx="75%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#d97706" stop-opacity="0.14" />
+      <stop offset="50%" stop-color="#b45309" stop-opacity="0.04" />
+      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="sourcesEmeraldGlow" cx="25%" cy="65%" r="50%">
+      <stop offset="0%" stop-color="#059669" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="libraryGrid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#13261c" stroke-width="0.6" opacity="0.25" />
+    </pattern>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#070c09" />
+  <rect width="1920" height="1080" fill="url(#libraryGrid)" />
+  <circle cx="1440" cy="380" r="650" fill="url(#sourcesGoldGlow)" />
+  <circle cx="480" cy="700" r="550" fill="url(#sourcesEmeraldGlow)" />
+
+  <!-- Knowledge Graph Nodes & Manuscript Connections -->
+  <g stroke="#f59e0b" stroke-width="1" opacity="0.15" fill="none">
+    <path d="M 200 400 L 450 320 L 700 420 L 950 280 L 1200 390 L 1500 290 L 1750 420" />
+    <path d="M 450 320 L 520 600 L 850 680 L 1200 390" />
+    <path d="M 700 420 L 850 680 L 1100 750 L 1400 620 L 1500 290" />
+    <!-- Manuscript Spine Arcs -->
+    <path d="M 100 850 Q 500 700 960 850 T 1820 850" stroke-dasharray="6 6" />
+  </g>
+
+  <!-- Sacred Geometry Concentric Rings (IS 04 Ground Truth Core) -->
+  <g stroke="#10b981" stroke-width="1" opacity="0.12" fill="none">
+    <circle cx="960" cy="540" r="280" stroke-dasharray="4 8" />
+    <circle cx="960" cy="540" r="420" stroke-dasharray="12 12" />
+    <polygon points="960,260 1202,680 718,680" stroke="#f59e0b" opacity="0.08" />
+    <polygon points="960,820 1202,400 718,400" stroke="#10b981" opacity="0.08" />
+  </g>
+
+  <!-- Glowing Knowledge Node Vertices -->
+  <g fill="#fbbf24" opacity="0.4">
+    <circle cx="200" cy="400" r="4" />
+    <circle cx="450" cy="320" r="5" />
+    <circle cx="700" cy="420" r="4.5" />
+    <circle cx="950" cy="280" r="6" />
+    <circle cx="1200" cy="390" r="5" />
+    <circle cx="1500" cy="290" r="5" />
+    <circle cx="1750" cy="420" r="4" />
+    <circle cx="520" cy="600" r="3.5" />
+    <circle cx="850" cy="680" r="5.5" />
+    <circle cx="1100" cy="750" r="4" />
+    <circle cx="1400" cy="620" r="4.5" />
+  </g>
+</svg>

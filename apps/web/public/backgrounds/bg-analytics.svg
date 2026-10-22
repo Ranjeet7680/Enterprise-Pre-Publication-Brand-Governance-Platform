@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="analyticsCyanGlow" cx="30%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.18" />
+      <stop offset="60%" stop-color="#0369a1" stop-opacity="0.04" />
+      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="analyticsEmeraldGlow" cx="80%" cy="70%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#070c09" />
+  <circle cx="576" cy="324" r="600" fill="url(#analyticsCyanGlow)" />
+  <circle cx="1536" cy="756" r="550" fill="url(#analyticsEmeraldGlow)" />
+
+  <!-- Radar Dial & Concentric Telemetry Target -->
+  <g stroke="#0284c7" stroke-width="1" opacity="0.14" fill="none">
+    <circle cx="960" cy="540" r="160" />
+    <circle cx="960" cy="540" r="320" stroke-dasharray="6 6" />
+    <circle cx="960" cy="540" r="480" />
+    <circle cx="960" cy="540" r="640" stroke-dasharray="12 12" />
+    <line x1="320" y1="540" x2="1600" y2="540" />
+    <line x1="960" y1="0" x2="960" y2="1080" />
+    <line x1="507" y1="87" x2="1413" y2="993" stroke-dasharray="4 4" />
+    <line x1="507" y1="993" x2="1413" y2="87" stroke-dasharray="4 4" />
+  </g>
+
+  <!-- Flowing Trend / Confidence Waves -->
+  <g fill="none" stroke-width="1.5">
+    <path d="M 0 680 Q 240 600, 480 640 T 960 520 T 1440 450 T 1920 400" stroke="#10b981" opacity="0.25" />
+    <path d="M 0 720 Q 300 780, 600 710 T 1200 600 T 1800 500 T 1920 490" stroke="#38bdf8" opacity="0.18" />
+    <path d="M 0 850 Q 400 800, 800 820 T 1600 700 T 1920 660" stroke="#a855f7" opacity="0.12" />
+  </g>
+
+  <!-- Telemetry Data Nodes -->
+  <g fill="#38bdf8" opacity="0.45">
+    <circle cx="480" cy="640" r="3.5" />
+    <circle cx="960" cy="520" r="4.5" />
+    <circle cx="1440" cy="450" r="4" />
+    <circle cx="600" cy="710" r="3" />
+    <circle cx="1200" cy="600" r="3.5" />
+  </g>
+</svg>
