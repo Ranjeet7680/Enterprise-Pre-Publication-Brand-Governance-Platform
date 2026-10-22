@@ -6,7 +6,8 @@ import {
   ChevronRight, Database, Settings, BarChart3, Layers, Palette,
   MessageSquare, Send, Check, X, ThumbsUp, ThumbsDown, BookOpen,
   Sliders, Search, Filter, ShieldAlert, Cpu, Home, UploadCloud,
-  LogOut, User, SplitSquareVertical, MessageCircle, AlertOctagon
+  LogOut, User, SplitSquareVertical, MessageCircle, AlertOctagon,
+  Menu, ChevronDown, Bell, Command, Compass, Briefcase, Zap
 } from 'lucide-react';
 
 import { CelebrationFX } from './components/CelebrationFX';
@@ -60,6 +61,12 @@ const TAB_THEME_LABELS: Record<string, { label: string; motif: string; icon: str
   audit: { label: 'Cryptographic Fortress Vault', motif: 'Hexagonal Shield & SHA-256 Block Chain', icon: '🛡️' },
   settings: { label: 'Mechanical Governance Clockwork', motif: 'Interlocking Sprockets & Policy Dials', icon: '⚙️' },
 };
+
+const WORKSPACE_OPTIONS = [
+  { id: 'ws-main', name: 'Nadi Naturals (Master Brand)', region: 'Mumbai (ap-south-1)', badge: 'Active Default', icon: '🌿' },
+  { id: 'ws-eu', name: 'Nadi Botanicals (EU / UK Hub)', region: 'Frankfurt (eu-central-1)', badge: 'Staging', icon: '🌍' },
+  { id: 'ws-glow', name: 'Nadi Glow (Youth Line)', region: 'Singapore (ap-southeast-1)', badge: 'Sandbox', icon: '✨' },
+];
 
 export default function App() {
   // Navigation & Workspace State
@@ -121,6 +128,28 @@ export default function App() {
   const [findingsDensity, setFindingsDensity] = useState<'compact' | 'detailed'>('detailed');
   const [findingsSearch, setFindingsSearch] = useState('');
   const [mobileStudioTab, setMobileStudioTab] = useState<'editor' | 'findings'>('editor');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeWorkspace, setActiveWorkspace] = useState('Nadi Naturals (Master Brand)');
+  const [showWorkspaceDropdown, setShowWorkspaceDropdown] = useState(false);
+  const [showCommandPalette, setShowCommandPalette] = useState(false);
+  const [commandSearch, setCommandSearch] = useState('');
+
+  // Global Keyboard Shortcuts (Cmd+K / Ctrl+K for Command Palette)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setShowCommandPalette((prev) => !prev);
+      }
+      if (e.key === 'Escape') {
+        setShowCommandPalette(false);
+        setShowWorkspaceDropdown(false);
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Modals & Extra Views
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -692,6 +721,40 @@ export default function App() {
     return true;
   }) || [];
 
+  const commandItems = [
+    // Modules
+    { type: 'Module', title: 'Review Studio', desc: 'Pre-publication visual linter & omnichannel review workstation', action: () => { setActiveTab('studio'); setShowCommandPalette(false); }, icon: FileText },
+    { type: 'Module', title: 'Review Queue', desc: 'Inspect pending pre-publication SLA queue & sign-off status', action: () => { setActiveTab('queue'); setShowCommandPalette(false); }, icon: Layers },
+    { type: 'Module', title: 'Brand Library & Sources', desc: 'Manage formulation specs, claims register & resolve conflicts', action: () => { setActiveTab('sources'); setShowCommandPalette(false); }, icon: BookOpen },
+    { type: 'Module', title: 'Visual & Asset Governance', desc: 'Verify logo ratio specs and WCAG 2.1 color contrast', action: () => { setActiveTab('assets'); setShowCommandPalette(false); }, icon: Palette },
+    { type: 'Module', title: 'Governance Analytics', desc: 'Inspect cycle telemetry & guideline clarity gaps', action: () => { setActiveTab('analytics'); setShowCommandPalette(false); }, icon: BarChart3 },
+    { type: 'Module', title: 'Security & Audit Trail', desc: 'Review immutable SHA-256 logs & adversarial injection telemetry', action: () => { setActiveTab('audit'); setShowCommandPalette(false); }, icon: ShieldAlert },
+    { type: 'Module', title: 'Settings & Policy', desc: 'Configure data residency region & role permission matrix', action: () => { setActiveTab('settings'); setShowCommandPalette(false); }, icon: Settings },
+    { type: 'Module', title: 'Welcome & Tour', desc: 'Explore blueprint specification & live sandbox', action: () => { setActiveTab('welcome'); setShowCommandPalette(false); }, icon: Home },
+
+    // Actions
+    { type: 'Action', title: 'Run Governance Review', desc: 'Audit active copy against all 10 governance checks', action: () => { triggerAudit(currentText); setShowCommandPalette(false); }, icon: Sparkles },
+    { type: 'Action', title: 'Auto-Fix All Violations', desc: 'Apply all approved 1-click brand corrections', action: () => { handleAutoFixAll(); setShowCommandPalette(false); }, icon: Zap },
+    { type: 'Action', title: 'Toggle Visual Diff Mode', desc: 'Compare active copy against version 1 original', action: () => { setShowDiffView(!showDiffView); if (activeTab !== 'studio') setActiveTab('studio'); setShowCommandPalette(false); }, icon: SplitSquareVertical },
+    { type: 'Action', title: 'Open Reviewer Comments', desc: 'Inspect collaboration threads and mentions', action: () => { setShowCommentDrawer(true); setShowCommandPalette(false); }, icon: MessageCircle },
+    { type: 'Action', title: 'Start Voice Dictation', desc: 'Dictate marketing copy in Indic dialects with verification', action: () => { setShowVoiceModal(true); setShowCommandPalette(false); }, icon: Mic },
+    { type: 'Action', title: 'Upload Brand Knowledge Source', desc: 'Ingest source into candidate quarantine', action: () => { setShowUploadModal(true); setShowCommandPalette(false); }, icon: UploadCloud },
+    { type: 'Action', title: 'Switch User Persona / Auth', desc: 'Switch between Creator, Reviewer, Manager, Admin', action: () => { setShowAuthModal(true); setShowCommandPalette(false); }, icon: UserCheck },
+    { type: 'Action', title: 'Reset Demo Database', desc: 'Reset all items to fresh blueprint default state', action: () => { handleLoadScenario('terminology_conflict'); setShowCommandPalette(false); }, icon: RefreshCw },
+
+    // Blueprint Scenarios
+    { type: 'Scenario', title: '1. Terminology Conflict', desc: 'Prohibited legacy product name test', action: () => { handleLoadScenario('terminology_conflict'); setActiveTab('studio'); setShowCommandPalette(false); }, icon: AlertCircle },
+    { type: 'Scenario', title: '2. Unsupported Claim', desc: 'ASCI superlative claims verification test', action: () => { handleLoadScenario('unsupported_claim'); setActiveTab('studio'); setShowCommandPalette(false); }, icon: AlertTriangle },
+    { type: 'Scenario', title: '3. Expired Promotional Offer', desc: 'Time-bound festive discount cutoff test', action: () => { handleLoadScenario('expired_offer'); setActiveTab('studio'); setShowCommandPalette(false); }, icon: Lock },
+    { type: 'Scenario', title: '4. Tone Mismatch', desc: 'Sarcastic & aggressive pushy copy detection', action: () => { handleLoadScenario('tone_mismatch'); setActiveTab('studio'); setShowCommandPalette(false); }, icon: Sparkles },
+    { type: 'Scenario', title: '5. Logo Distortion & Misuse', desc: 'Stretched 1.8:1 aspect ratio violation', action: () => { handleLoadScenario('logo_misuse'); setActiveTab('studio'); setShowCommandPalette(false); }, icon: Palette },
+    { type: 'Scenario', title: '6. Accessibility & Contrast', desc: 'WCAG AA 1.76:1 low contrast & missing alt-text', action: () => { handleLoadScenario('accessibility'); setActiveTab('studio'); setShowCommandPalette(false); }, icon: Eye },
+    { type: 'Scenario', title: '7. Hinglish Code-Switching', desc: 'Indian language colloquialisms & nuance', action: () => { handleLoadScenario('code_switching'); setActiveTab('studio'); setShowCommandPalette(false); }, icon: Compass },
+    { type: 'Scenario', title: '8. Source Conflict (100% vs 98.5%)', desc: 'Conflicting guidelines routing & resolution', action: () => { handleLoadScenario('source_conflict'); setActiveTab('studio'); setShowCommandPalette(false); }, icon: AlertOctagon },
+    { type: 'Scenario', title: '9. Voice Dictation & Safety', desc: 'Indic spoken input with human approval gate', action: () => { handleLoadScenario('voice_dictation'); setActiveTab('studio'); setShowCommandPalette(false); }, icon: Mic },
+    { type: 'Scenario', title: '10. Adversarial Prompt Injection', desc: 'Red-team override attack neutralization', action: () => { handleLoadScenario('prompt_injection'); setActiveTab('studio'); setShowCommandPalette(false); }, icon: ShieldAlert },
+  ];
+
   return (
     <div className="relative min-h-screen bg-[#040805] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white overflow-hidden">
       {/* Restrained Completion Particle Effect (IS 22) */}
@@ -729,91 +792,232 @@ export default function App() {
       )}
 
       {/* TOP HEADER */}
-      <header className="h-16 border-b border-[#182e22] bg-[#0c1611] px-3 sm:px-6 flex items-center justify-between sticky top-0 z-40">
+      <header className="h-16 border-b border-[#182e22]/90 bg-[#09120d]/95 backdrop-blur-xl px-3 sm:px-6 flex items-center justify-between sticky top-0 z-40 shadow-lg">
+        {/* Left: Brand Identity + Workspace Selector */}
         <div className="flex items-center space-x-2.5 sm:space-x-4 min-w-0">
           <div
             onClick={() => setActiveTab('welcome')}
             className="flex items-center space-x-2 cursor-pointer group shrink-0"
+            title="Return to Welcome & Architecture Tour"
           >
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-600/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-lg shadow-emerald-950/80 group-hover:scale-105 transition-transform border border-emerald-400/40">
               <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
               <div className="flex items-center space-x-1.5 sm:space-x-2">
                 <span className="font-extrabold text-base sm:text-lg tracking-wider text-slate-100">INKLOOM</span>
-                <span className="text-[9px] sm:text-[10px] font-mono uppercase px-1.5 sm:px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">
+                <span className="text-[9px] sm:text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">
                   v1.2
                 </span>
               </div>
-              <p className="hidden sm:block text-[11px] text-slate-400 truncate">Enterprise Brand Governance &amp; Explainable AI</p>
+              <p className="hidden sm:block text-[11px] text-slate-400 truncate">Enterprise Brand Governance</p>
             </div>
           </div>
 
-          <div className="hidden sm:block h-6 w-px bg-slate-800" />
+          <div className="hidden sm:block h-6 w-px bg-[#182e22]" />
 
-          {/* Workspace Pill */}
-          <div className="hidden md:flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-[#112219] border border-[#213f2f] text-xs text-slate-300 shrink-0">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="font-medium text-emerald-300">Nadi Naturals</span>
-            <span className="text-slate-500">|</span>
-            <span className="text-slate-400">Master Brand</span>
+          {/* Interactive Workspace Dropdown Selector */}
+          <div className="relative">
+            <button
+              onClick={() => setShowWorkspaceDropdown(!showWorkspaceDropdown)}
+              className="hidden md:flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-[#0e1d15] border border-[#1e3b2b] hover:border-emerald-500/80 text-xs text-slate-300 transition-all shadow-sm"
+              title="Switch Active Tenant & Brand Workspace"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <span className="font-medium text-emerald-300 truncate max-w-[140px] lg:max-w-none">{activeWorkspace}</span>
+              <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${showWorkspaceDropdown ? 'rotate-180' : ''}`} />
+            </button>
+
+            {/* Workspace Dropdown Menu */}
+            {showWorkspaceDropdown && (
+              <div className="absolute top-11 left-0 z-50 w-72 bg-[#0b1410] border border-[#1f3a2b] rounded-xl shadow-2xl p-2 space-y-1 animate-fadeIn">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 px-2 py-1">
+                  Select Active Workspace:
+                </div>
+                {WORKSPACE_OPTIONS.map((ws) => (
+                  <button
+                    key={ws.id}
+                    onClick={() => {
+                      setActiveWorkspace(ws.name);
+                      setShowWorkspaceDropdown(false);
+                      showToast(`Workspace active: ${ws.name}`, "info");
+                    }}
+                    className={`w-full p-2.5 rounded-lg text-left text-xs flex items-center justify-between transition-colors ${
+                      activeWorkspace === ws.name
+                        ? 'bg-[#102419] border border-emerald-600/70 text-emerald-300 font-semibold'
+                        : 'hover:bg-[#0e1d15] text-slate-300'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center space-x-1.5">
+                        <span>{ws.icon}</span>
+                        <span>{ws.name}</span>
+                      </div>
+                      <div className="text-[10px] text-slate-500 font-mono mt-0.5">{ws.region}</div>
+                    </div>
+                    {activeWorkspace === ws.name && <Check className="w-3.5 h-3.5 text-emerald-400" />}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Controls: Persona Switcher, Blueprint Scenarios, Auth */}
-        <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
+        {/* Center: Command Palette Trigger (Cmd+K / Ctrl+K) */}
+        <div className="hidden lg:flex items-center mx-3">
+          <button
+            onClick={() => setShowCommandPalette(true)}
+            className="flex items-center space-x-2.5 px-3.5 py-1.5 rounded-xl bg-[#08120d] border border-[#1a3325] hover:border-emerald-500/80 text-xs text-slate-400 hover:text-slate-200 transition-all shadow-inner group w-64 justify-between"
+            title="Search modules, quick actions & scenarios (Ctrl+K / Cmd+K)"
+          >
+            <span className="flex items-center space-x-2 truncate">
+              <Search className="w-3.5 h-3.5 text-emerald-400 group-hover:text-emerald-300 transition-colors" />
+              <span>Search or command...</span>
+            </span>
+            <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#102218] border border-[#1e3b2b] text-emerald-300 shrink-0">
+              ⌘K
+            </kbd>
+          </button>
+        </div>
+
+        {/* Right: Telemetry, Scenario Selector, Persona & Mobile Toggle */}
+        <div className="flex items-center space-x-2 sm:space-x-2.5 shrink-0">
+          {/* Telemetry Latency Indicator */}
+          <div
+            className="hidden xl:flex items-center space-x-1.5 px-2.5 py-1 rounded-lg bg-[#0a1510] border border-[#162d1f] text-[11px] font-mono text-emerald-400"
+            title="Edge verification engine average roundtrip latency"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+            <span>14ms Edge Latency</span>
+          </div>
+
           {/* Blueprint Scenarios Dropdown */}
-          <div className="flex items-center space-x-2">
-            <span className="text-xs text-slate-400 hidden xl:inline">Test Scenario:</span>
+          <div className="flex items-center space-x-1 sm:space-x-2">
+            <span className="text-xs text-slate-400 hidden 2xl:inline">Scenario:</span>
             <select
-              className="bg-[#101f17] border border-[#213d2d] text-emerald-300 text-xs rounded-lg px-2 sm:px-3 py-1.5 focus:border-emerald-500 focus:outline-none cursor-pointer max-w-[125px] sm:max-w-xs md:max-w-none truncate"
+              className="bg-[#0e1d15] border border-[#1f3a2b] text-emerald-300 text-xs rounded-lg px-2 sm:px-2.5 py-1.5 focus:border-emerald-500 focus:outline-none cursor-pointer max-w-[120px] sm:max-w-[170px] md:max-w-none truncate font-medium"
               onChange={(e) => {
                 handleLoadScenario(e.target.value);
                 if (activeTab === 'welcome') setActiveTab('studio');
               }}
               defaultValue=""
+              title="Load 1 of 10 Architecture Blueprint test scenarios"
             >
               <option value="" disabled>Scenario (1-10)...</option>
-              <option value="terminology_conflict">1. Terminology Conflict (Legacy Name)</option>
-              <option value="unsupported_claim">2. Unsupported Claim ("Most Trusted")</option>
-              <option value="expired_offer">3. Expired Offer (Festive discount)</option>
-              <option value="tone_mismatch">4. Tone Mismatch (Sarcastic Copy)</option>
-              <option value="logo_misuse">5. Logo Misuse (Stretched 1.8:1)</option>
-              <option value="accessibility">6. Accessibility &amp; Low Contrast</option>
-              <option value="code_switching">7. Hinglish Nuance &amp; Codeswitch</option>
-              <option value="source_conflict">8. Source Conflict (100% vs 98.5%)</option>
-              <option value="voice_dictation">9. Voice Dictation &amp; Audio</option>
-              <option value="prompt_injection">10. Security: Adversarial Injection</option>
+              <option value="terminology_conflict">1. 🚨 Terminology Conflict (Legacy Name)</option>
+              <option value="unsupported_claim">2. ⚠️ Unsupported Claim ("Most Trusted")</option>
+              <option value="expired_offer">3. ⏳ Expired Offer (Festive discount)</option>
+              <option value="tone_mismatch">4. ⚡ Tone Mismatch (Sarcastic Copy)</option>
+              <option value="logo_misuse">5. 📐 Logo Misuse (Stretched 1.8:1)</option>
+              <option value="accessibility">6. 👁️ Accessibility & Low Contrast</option>
+              <option value="code_switching">7. 🇮🇳 Hinglish Nuance & Codeswitch</option>
+              <option value="source_conflict">8. 📜 Source Conflict (100% vs 98.5%)</option>
+              <option value="voice_dictation">9. 🎙️ Voice Dictation & Audio</option>
+              <option value="prompt_injection">10. 🛡️ Security: Adversarial Injection</option>
             </select>
           </div>
 
           {/* User Persona Button & Sign-In */}
           <button
             onClick={() => setShowAuthModal(true)}
-            className="flex items-center space-x-1.5 sm:space-x-2 px-2 sm:px-3 py-1.5 rounded-lg bg-[#112219] border border-[#213f2f] hover:border-emerald-500 text-xs text-slate-200 transition-colors"
+            className="flex items-center space-x-1.5 sm:space-x-2 px-2 sm:px-3 py-1.5 rounded-lg bg-[#0e1d15] border border-[#1f3a2b] hover:border-emerald-500 text-xs text-slate-200 transition-colors shadow-sm"
             title="Switch User Persona or Authenticate SSO"
           >
-            <UserCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
+            <div className="w-5 h-5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-700/80 flex items-center justify-center font-bold text-[10px]">
+              {currentUser.name?.split(' ').map(n => n[0]).join('') || 'AS'}
+            </div>
             <span className="font-medium hidden sm:inline">{currentUser.name}</span>
             <span className="text-[9px] sm:text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
               {currentUser.role}
             </span>
           </button>
+
+          {/* Mobile Search Button (Visible on < lg) */}
+          <button
+            onClick={() => setShowCommandPalette(true)}
+            className="lg:hidden p-1.5 rounded-lg bg-[#0e1d15] border border-[#1f3a2b] text-slate-300 hover:text-emerald-400 transition-colors"
+            title="Open Command Search"
+          >
+            <Search className="w-4 h-4" />
+          </button>
+
+          {/* Mobile Hamburger Menu Toggle (Visible on < lg) */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`lg:hidden p-1.5 rounded-lg border transition-colors ${
+              mobileMenuOpen
+                ? 'bg-emerald-950 border-emerald-500 text-emerald-300'
+                : 'bg-[#0e1d15] border-[#1f3a2b] text-slate-300 hover:text-white hover:border-slate-600'
+            }`}
+            title={mobileMenuOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </header>
 
-      {/* NAVIGATION BAR */}
-      <nav className="border-b border-[#182e22] bg-[#0c1611] px-3 sm:px-6 flex items-center justify-between overflow-x-auto no-scrollbar whitespace-nowrap">
-        <div className="flex space-x-1 shrink-0">
+      {/* NAVIGATION BAR (TIER 2) */}
+      <nav className="border-b border-[#182e22]/90 bg-[#08100c]/95 backdrop-blur-xl px-3 sm:px-6 flex items-center justify-between overflow-x-auto no-scrollbar whitespace-nowrap shadow-inner sticky top-16 z-30">
+        <div className="flex space-x-1 shrink-0 py-1">
           {[
-            { id: 'welcome', label: 'Welcome & Tour', icon: Home },
-            { id: 'studio', label: 'Review Studio', icon: FileText },
-            { id: 'queue', label: 'Review Queue', icon: Layers },
-            { id: 'sources', label: 'Brand Library & Sources', icon: BookOpen },
-            { id: 'assets', label: 'Visual & Asset Governance', icon: Palette },
-            { id: 'analytics', label: 'Governance Analytics', icon: BarChart3 },
-            { id: 'audit', label: 'Security & Audit Trail', icon: ShieldAlert },
-            { id: 'settings', label: 'Settings & Policy', icon: Settings },
+            {
+              id: 'welcome',
+              label: 'Welcome & Tour',
+              icon: Home,
+              desc: 'Architecture tour and live micro-sandbox'
+            },
+            {
+              id: 'studio',
+              label: 'Review Studio',
+              icon: FileText,
+              desc: 'Pre-publication visual linter & omnichannel previews',
+              badge: (reviewRun?.total_findings !== undefined ? reviewRun.total_findings : filteredFindings.length) > 0
+                ? `${reviewRun?.total_findings !== undefined ? reviewRun.total_findings : filteredFindings.length}`
+                : null,
+              badgeColor: (reviewRun?.blockers_count || 0) > 0 ? 'rose' : 'emerald'
+            },
+            {
+              id: 'queue',
+              label: 'Review Queue',
+              icon: Layers,
+              desc: 'Prioritized SLA pre-publication workflow queue',
+              badge: '1 SLA',
+              badgeColor: 'emerald'
+            },
+            {
+              id: 'sources',
+              label: 'Brand Library & Sources',
+              icon: BookOpen,
+              desc: 'Governed formulation specs & glossary registry',
+              badge: conflicts.length > 0 ? 'Conflict' : null,
+              badgeColor: 'amber'
+            },
+            {
+              id: 'assets',
+              label: 'Visual & Asset Governance',
+              icon: Palette,
+              desc: 'Master logo geometry & WCAG 2.1 contrast'
+            },
+            {
+              id: 'analytics',
+              label: 'Governance Analytics',
+              icon: BarChart3,
+              desc: 'Cycle telemetry & guideline clarity gaps'
+            },
+            {
+              id: 'audit',
+              label: 'Security & Audit Trail',
+              icon: ShieldAlert,
+              desc: 'Cryptographic SHA-256 logs & prompt injection gates',
+              badge: 'SHA-256',
+              badgeColor: 'slate'
+            },
+            {
+              id: 'settings',
+              label: 'Settings & Policy',
+              icon: Settings,
+              desc: 'Data residency & RBAC governance matrix'
+            },
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -821,20 +1025,30 @@ export default function App() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center space-x-1.5 sm:space-x-2 py-2.5 sm:py-3 px-2.5 sm:px-4 text-xs font-semibold border-b-2 transition-all shrink-0 ${
+                className={`flex items-center space-x-2 py-2.5 px-3 sm:px-3.5 text-xs font-semibold rounded-lg transition-all shrink-0 border ${
                   isActive
-                    ? 'border-emerald-500 text-emerald-400 bg-emerald-950/30'
-                    : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                    ? 'border-emerald-500/80 text-emerald-300 bg-emerald-950/60 shadow-[inset_0_-2px_8px_rgba(16,185,129,0.3)] ring-1 ring-emerald-500/40'
+                    : 'border-transparent text-slate-400 hover:text-slate-100 hover:bg-[#0e1d15]/50'
                 }`}
               >
-                <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`} />
                 <span>{tab.label}</span>
+                {tab.badge && (
+                  <span className={`text-[9px] font-mono uppercase px-1.5 py-0.2 rounded-full font-bold ml-1 border ${
+                    tab.badgeColor === 'rose' ? 'bg-rose-950 text-rose-300 border-rose-800' :
+                    tab.badgeColor === 'amber' ? 'bg-amber-950 text-amber-300 border-amber-800 animate-pulse' :
+                    tab.badgeColor === 'emerald' ? 'bg-emerald-950 text-emerald-300 border-emerald-800' :
+                    'bg-[#102217] text-slate-300 border-[#1e3b2b]'
+                  }`}>
+                    {tab.badge}
+                  </span>
+                )}
               </button>
             );
           })}
         </div>
 
-        <div className="flex items-center space-x-2 shrink-0 ml-3">
+        <div className="flex items-center space-x-2 shrink-0 ml-3 py-1">
           {/* Active Background Theme Indicator */}
           <div
             className="hidden lg:flex items-center space-x-2 text-xs font-mono bg-[#0c1611]/90 px-3 py-1.5 rounded-lg border border-emerald-800/60 shadow-sm"
@@ -847,15 +1061,19 @@ export default function App() {
 
           <button
             onClick={() => setShowUploadModal(true)}
-            className="text-xs text-slate-300 hover:text-emerald-300 flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-[#213f2f] bg-[#0e1d15] transition-colors"
+            className="text-xs text-slate-300 hover:text-emerald-300 flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-[#213f2f] bg-[#0e1d15] hover:bg-[#12241a] transition-colors shadow-sm"
+            title="Upload new brand guideline into quarantined candidate state"
           >
             <UploadCloud className="w-3.5 h-3.5 text-emerald-400" />
             <span className="hidden sm:inline">Ingest Source</span>
           </button>
 
           <button
-            onClick={() => handleLoadScenario('terminology_conflict')}
-            className="text-xs text-slate-400 hover:text-slate-200 flex items-center space-x-1 px-2.5 sm:px-3 py-1.5 rounded-lg border border-[#213f2f] bg-[#0e1d15]"
+            onClick={() => {
+              handleLoadScenario('terminology_conflict');
+              showToast("Demo database reset to clean blueprint state.", "info");
+            }}
+            className="text-xs text-slate-400 hover:text-slate-200 flex items-center space-x-1 px-2.5 sm:px-3 py-1.5 rounded-lg border border-[#213f2f] bg-[#0e1d15] hover:bg-[#12241a] transition-colors"
             title="Reset database to fresh default state"
           >
             <RefreshCw className="w-3.5 h-3.5" />
@@ -863,6 +1081,167 @@ export default function App() {
           </button>
         </div>
       </nav>
+
+      {/* MOBILE FULL-SCREEN NAVIGATION SHEET */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden overflow-hidden flex flex-col">
+          {/* Dark Backdrop */}
+          <div
+            onClick={() => setMobileMenuOpen(false)}
+            className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
+          />
+
+          <div className="relative z-10 w-full bg-[#0a140f] border-b border-[#1f3a2b] shadow-2xl flex flex-col max-h-[92vh] overflow-y-auto animate-fadeIn">
+            {/* Top Sheet Bar */}
+            <div className="p-4 border-b border-[#182e22] flex items-center justify-between bg-[#070d0a]">
+              <div className="flex items-center space-x-2.5">
+                <div className="w-8 h-8 rounded-lg bg-emerald-600/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+                  <Shield className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="font-bold text-sm tracking-wide text-slate-100">INKLOOM NAVIGATION</span>
+                  <p className="text-[10px] text-slate-400">Enterprise Brand Governance Platform</p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-1.5 rounded-lg bg-[#0e1d15] text-slate-400 hover:text-white border border-[#1e382a]"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Quick Command & Search Bar in Mobile Drawer */}
+            <div className="p-3 border-b border-[#15291e] bg-[#0c1812]">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setShowCommandPalette(true);
+                }}
+                className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-[#070e0a] border border-[#1b3426] text-xs text-slate-300 hover:border-emerald-500 transition-colors"
+              >
+                <span className="flex items-center space-x-2">
+                  <Search className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Search modules, rules &amp; scenarios...</span>
+                </span>
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#102218] border border-[#1e3b2b] text-emerald-400">⌘K</span>
+              </button>
+            </div>
+
+            {/* Workspace & Persona Card in Mobile Drawer */}
+            <div className="p-3 border-b border-[#15291e] bg-[#08100c] flex items-center justify-between text-xs">
+              <div className="flex items-center space-x-2 min-w-0">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                <span className="text-slate-300 font-medium truncate">{activeWorkspace}</span>
+              </div>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setShowAuthModal(true);
+                }}
+                className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 shrink-0 ml-2"
+              >
+                {currentUser.role} &bull; Switch
+              </button>
+            </div>
+
+            {/* 8 Module Navigation Cards */}
+            <div className="p-3 space-y-2">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 px-1">Platform Modules:</div>
+              {[
+                { id: 'welcome', label: 'Welcome & Tour', icon: Home, desc: 'Architecture tour and live micro-sandbox' },
+                {
+                  id: 'studio',
+                  label: 'Review Studio',
+                  icon: FileText,
+                  desc: 'Pre-publication visual linter & omnichannel previews',
+                  badge: (reviewRun?.total_findings !== undefined ? reviewRun.total_findings : filteredFindings.length) > 0
+                    ? `${reviewRun?.total_findings !== undefined ? reviewRun.total_findings : filteredFindings.length} findings`
+                    : null,
+                  badgeColor: (reviewRun?.blockers_count || 0) > 0 ? 'rose' : 'emerald'
+                },
+                { id: 'queue', label: 'Review Queue', icon: Layers, desc: 'Prioritized SLA pre-publication workflow queue', badge: '1 SLA', badgeColor: 'emerald' },
+                { id: 'sources', label: 'Brand Library & Sources', icon: BookOpen, desc: 'Governed formulation specs & glossary registry', badge: conflicts.length > 0 ? 'Conflict Alert' : null, badgeColor: 'amber' },
+                { id: 'assets', label: 'Visual & Asset Governance', icon: Palette, desc: 'Master logo geometry & WCAG 2.1 contrast' },
+                { id: 'analytics', label: 'Governance Analytics', icon: BarChart3, desc: 'Cycle telemetry & guideline clarity gaps' },
+                { id: 'audit', label: 'Security & Audit Trail', icon: ShieldAlert, desc: 'Cryptographic SHA-256 logs & injection gates', badge: 'SHA-256', badgeColor: 'slate' },
+                { id: 'settings', label: 'Settings & Policy', icon: Settings, desc: 'Data residency & RBAC governance matrix' },
+              ].map((tab) => {
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => {
+                      setActiveTab(tab.id as any);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`w-full p-3 rounded-xl border text-left flex items-center justify-between transition-all ${
+                      isActive
+                        ? 'bg-[#102419] border-emerald-500 shadow-md ring-1 ring-emerald-500/50'
+                        : 'bg-[#08120d] border-[#182e22] hover:border-slate-600'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                        isActive ? 'bg-emerald-500 text-slate-950 font-bold' : 'bg-[#0e1d15] text-emerald-400 border border-[#1e3b2b]'
+                      }`}>
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="flex items-center space-x-2">
+                          <span className={`text-xs font-bold ${isActive ? 'text-white' : 'text-slate-200'}`}>
+                            {tab.label}
+                          </span>
+                          {tab.badge && (
+                            <span className={`text-[9px] font-mono px-1.5 py-0.2 rounded-full font-bold border ${
+                              tab.badgeColor === 'rose' ? 'bg-rose-950 text-rose-300 border-rose-800' :
+                              tab.badgeColor === 'amber' ? 'bg-amber-950 text-amber-300 border-amber-800' :
+                              'bg-emerald-950 text-emerald-300 border-emerald-800'
+                            }`}>
+                              {tab.badge}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-[10px] text-slate-400 line-clamp-1">{tab.desc}</p>
+                      </div>
+                    </div>
+
+                    <ChevronRight className={`w-4 h-4 shrink-0 ${isActive ? 'text-emerald-400' : 'text-slate-600'}`} />
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Quick Actions in Mobile Drawer */}
+            <div className="p-3 border-t border-[#15291e] bg-[#070e0a] grid grid-cols-2 gap-2">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setShowUploadModal(true);
+                }}
+                className="flex items-center justify-center space-x-1.5 p-2.5 rounded-lg bg-[#0e1d15] border border-[#1f3a2b] text-xs text-slate-200"
+              >
+                <UploadCloud className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Ingest Source</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  handleLoadScenario('terminology_conflict');
+                  setMobileMenuOpen(false);
+                  showToast("Demo environment reset to baseline.", "info");
+                }}
+                className="flex items-center justify-center space-x-1.5 p-2.5 rounded-lg bg-[#0e1d15] border border-[#1f3a2b] text-xs text-slate-200"
+              >
+                <RefreshCw className="w-3.5 h-3.5 text-slate-400" />
+                <span>Reset Demo</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* MAIN VIEW CONTENT */}
       <main className="relative z-10 flex-1 overflow-auto bg-transparent">
@@ -2023,6 +2402,75 @@ export default function App() {
                   {activeSourceDrawer.raw_content}
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* COMMAND PALETTE MODAL (⌘K / Ctrl+K) */}
+      {showCommandPalette && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/80 backdrop-blur-md animate-fadeIn">
+          <div
+            onClick={() => setShowCommandPalette(false)}
+            className="fixed inset-0 -z-10"
+          />
+          <div className="bg-[#0b1410] border border-emerald-500/50 rounded-2xl max-w-xl w-full shadow-2xl overflow-hidden flex flex-col max-h-[75vh]">
+            {/* Input Header */}
+            <div className="p-3.5 border-b border-[#182e22] bg-[#08100c] flex items-center space-x-3">
+              <Search className="w-4 h-4 text-emerald-400 shrink-0" />
+              <input
+                type="text"
+                value={commandSearch}
+                onChange={(e) => setCommandSearch(e.target.value)}
+                placeholder="Type a command, module, or scenario to jump..."
+                className="flex-1 bg-transparent text-sm text-slate-100 placeholder-slate-500 focus:outline-none font-sans"
+                autoFocus
+              />
+              <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#102217] border border-[#1e3c2c] text-slate-400">ESC to close</kbd>
+            </div>
+
+            {/* Filtered Results */}
+            <div className="p-2 overflow-y-auto space-y-1 divide-y divide-[#13241b]">
+              {commandItems
+                .filter(item =>
+                  item.title.toLowerCase().includes(commandSearch.toLowerCase()) ||
+                  item.desc.toLowerCase().includes(commandSearch.toLowerCase()) ||
+                  item.type.toLowerCase().includes(commandSearch.toLowerCase())
+                )
+                .map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={item.action}
+                      className="w-full p-2.5 rounded-xl hover:bg-[#0e2116] flex items-center justify-between text-left transition-colors group"
+                    >
+                      <div className="flex items-center space-x-3">
+                        <div className="w-7 h-7 rounded-lg bg-[#070e0a] border border-[#1b3426] flex items-center justify-center text-emerald-400 group-hover:border-emerald-500 transition-colors shrink-0">
+                          <Icon className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="flex items-center space-x-2">
+                            <span className="text-xs font-semibold text-slate-200 group-hover:text-emerald-300">
+                              {item.title}
+                            </span>
+                            <span className="text-[9px] font-mono uppercase px-1.5 py-0.2 rounded bg-[#0a1710] text-slate-400 border border-[#162e21]">
+                              {item.type}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate-400 leading-tight mt-0.5">{item.desc}</p>
+                        </div>
+                      </div>
+                      <ArrowRight className="w-3.5 h-3.5 text-slate-600 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
+                    </button>
+                  );
+                })}
+            </div>
+
+            {/* Footer */}
+            <div className="p-2.5 border-t border-[#182e22] bg-[#070d0a] flex items-center justify-between text-[11px] text-slate-500 font-mono">
+              <span>Quick Navigation &bull; Enter to select</span>
+              <span>Inkloom Engine Gateway</span>
             </div>
           </div>
         </div>
