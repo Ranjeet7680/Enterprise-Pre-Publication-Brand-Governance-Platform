@@ -1,53 +1,85 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
   <defs>
-    <radialGradient id="sourcesGoldGlow" cx="75%" cy="35%" r="55%">
-      <stop offset="0%" stop-color="#d97706" stop-opacity="0.14" />
-      <stop offset="50%" stop-color="#b45309" stop-opacity="0.04" />
+    <!-- Warm Golden Knowledge & Manuscript Glow -->
+    <radialGradient id="sourcesGoldAura" cx="72%" cy="38%" r="52%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.36" />
+      <stop offset="45%" stop-color="#b45309" stop-opacity="0.16" />
+      <stop offset="85%" stop-color="#78350f" stop-opacity="0.04" />
       <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
     </radialGradient>
-    <radialGradient id="sourcesEmeraldGlow" cx="25%" cy="65%" r="50%">
-      <stop offset="0%" stop-color="#059669" stop-opacity="0.16" />
+    <radialGradient id="sourcesEmeraldCore" cx="24%" cy="62%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.30" />
+      <stop offset="50%" stop-color="#065f46" stop-opacity="0.12" />
       <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
     </radialGradient>
-    <pattern id="libraryGrid" width="80" height="80" patternUnits="userSpaceOnUse">
-      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#13261c" stroke-width="0.6" opacity="0.25" />
+    <radialGradient id="sourcesAmberTop" cx="45%" cy="15%" r="40%">
+      <stop offset="0%" stop-color="#d97706" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Archival Manuscript Grid Pattern -->
+    <pattern id="manuscriptGrid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#2a1f10" stroke-width="0.8" opacity="0.45" />
+      <circle cx="0" cy="0" r="1.5" fill="#f59e0b" opacity="0.35" />
     </pattern>
   </defs>
 
+  <!-- Deep Obsidian Umber Foundation -->
   <rect width="1920" height="1080" fill="#070c09" />
-  <rect width="1920" height="1080" fill="url(#libraryGrid)" />
-  <circle cx="1440" cy="380" r="650" fill="url(#sourcesGoldGlow)" />
-  <circle cx="480" cy="700" r="550" fill="url(#sourcesEmeraldGlow)" />
 
-  <!-- Knowledge Graph Nodes & Manuscript Connections -->
-  <g stroke="#f59e0b" stroke-width="1" opacity="0.15" fill="none">
-    <path d="M 200 400 L 450 320 L 700 420 L 950 280 L 1200 390 L 1500 290 L 1750 420" />
-    <path d="M 450 320 L 520 600 L 850 680 L 1200 390" />
-    <path d="M 700 420 L 850 680 L 1100 750 L 1400 620 L 1500 290" />
-    <!-- Manuscript Spine Arcs -->
-    <path d="M 100 850 Q 500 700 960 850 T 1820 850" stroke-dasharray="6 6" />
+  <!-- Radiating Knowledge Halos -->
+  <circle cx="1380" cy="400" r="750" fill="url(#sourcesGoldAura)" />
+  <circle cx="480" cy="650" r="700" fill="url(#sourcesEmeraldCore)" />
+  <circle cx="900" cy="180" r="550" fill="url(#sourcesAmberTop)" />
+
+  <!-- Manuscript Background Grid -->
+  <rect width="1920" height="1080" fill="url(#manuscriptGrid)" opacity="0.8" />
+
+  <!-- Sacred Geometry Concentric Mandala (Canonical Truth Vault) -->
+  <g stroke="#f59e0b" stroke-width="1.2" opacity="0.4" fill="none">
+    <circle cx="1350" cy="420" r="160" stroke-dasharray="8 6" />
+    <circle cx="1350" cy="420" r="260" stroke-dasharray="16 8" />
+    <circle cx="1350" cy="420" r="380" stroke-dasharray="4 8" />
+    <circle cx="1350" cy="420" r="520" stroke-dasharray="24 12" />
+
+    <!-- Sacred Triangles of Truth -->
+    <polygon points="1350,160 1575,550 1125,550" stroke="#fbbf24" stroke-width="1.5" opacity="0.5" />
+    <polygon points="1350,680 1575,290 1125,290" stroke="#10b981" stroke-width="1.5" opacity="0.45" />
   </g>
 
-  <!-- Sacred Geometry Concentric Rings (IS 04 Ground Truth Core) -->
-  <g stroke="#10b981" stroke-width="1" opacity="0.12" fill="none">
-    <circle cx="960" cy="540" r="280" stroke-dasharray="4 8" />
-    <circle cx="960" cy="540" r="420" stroke-dasharray="12 12" />
-    <polygon points="960,260 1202,680 718,680" stroke="#f59e0b" opacity="0.08" />
-    <polygon points="960,820 1202,400 718,400" stroke="#10b981" opacity="0.08" />
+  <!-- Neural Knowledge Graph Connections (Master Claims & Source Links) -->
+  <g stroke="#fbbf24" stroke-width="1.6" opacity="0.55" fill="none">
+    <path d="M 180 380 L 420 280 L 680 390 L 940 250 L 1220 360 L 1480 260 L 1760 410" />
+    <path d="M 420 280 L 490 560 L 820 650 L 1220 360" />
+    <path d="M 680 390 L 820 650 L 1080 730 L 1380 590 L 1480 260" />
+    <path d="M 180 720 L 490 560 L 620 840 L 1080 730" />
+    <path d="M 1380 590 L 1640 720 L 1760 410" />
+
+    <!-- Illuminated Manuscript Arcs -->
+    <path d="M 100 860 Q 520 720 960 860 T 1840 860" stroke="#f59e0b" stroke-width="2" stroke-dasharray="8 6" opacity="0.4" />
   </g>
 
-  <!-- Glowing Knowledge Node Vertices -->
-  <g fill="#fbbf24" opacity="0.4">
-    <circle cx="200" cy="400" r="4" />
-    <circle cx="450" cy="320" r="5" />
-    <circle cx="700" cy="420" r="4.5" />
-    <circle cx="950" cy="280" r="6" />
-    <circle cx="1200" cy="390" r="5" />
-    <circle cx="1500" cy="290" r="5" />
-    <circle cx="1750" cy="420" r="4" />
-    <circle cx="520" cy="600" r="3.5" />
-    <circle cx="850" cy="680" r="5.5" />
-    <circle cx="1100" cy="750" r="4" />
-    <circle cx="1400" cy="620" r="4.5" />
+  <!-- Glowing Knowledge Node Synapses -->
+  <g fill="#fef08a">
+    <circle cx="180" cy="380" r="5" opacity="0.95" filter="drop-shadow(0 0 6px #f59e0b)" />
+    <circle cx="420" cy="280" r="6" opacity="0.95" filter="drop-shadow(0 0 8px #f59e0b)" />
+    <circle cx="680" cy="390" r="5" opacity="0.9" />
+    <circle cx="940" cy="250" r="7" opacity="1" filter="drop-shadow(0 0 10px #fbbf24)" />
+    <circle cx="1220" cy="360" r="6.5" opacity="0.95" />
+    <circle cx="1480" cy="260" r="6" opacity="0.9" />
+    <circle cx="1760" cy="410" r="5" opacity="0.85" />
+    <circle cx="490" cy="560" r="5.5" opacity="0.9" />
+    <circle cx="820" cy="650" r="6.5" opacity="0.95" filter="drop-shadow(0 0 8px #10b981)" />
+    <circle cx="1080" cy="730" r="5" opacity="0.9" />
+    <circle cx="1380" cy="590" r="6" opacity="0.95" />
+    <circle cx="1640" cy="720" r="4.5" opacity="0.8" />
+  </g>
+
+  <!-- Technical Archival Typography Metadata -->
+  <g fill="#fbbf24" opacity="0.55" font-family="monospace" font-size="11">
+    <text x="80" y="105">BRAND_LIBRARY_GRAPH // APPROVED_GROUND_TRUTH</text>
+    <text x="80" y="995">KNOWLEDGE_NODES: 3_ACTIVE_SOURCES // 0_UNRESOLVED_CONFLICTS</text>
+    <text x="1460" y="105">RAG_CITATION_ACCURACY: 100.0%</text>
+    <text x="1540" y="995">CANONICAL_SPEC: v2.1</text>
   </g>
 </svg>

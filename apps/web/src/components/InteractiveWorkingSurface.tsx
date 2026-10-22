@@ -153,7 +153,7 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* 1. SURFACE HEADER & CONTROLS */}
-      <div className="p-3.5 border-b border-[#182e22] bg-[#0a130e] flex flex-wrap items-center justify-between gap-2">
+      <div className="p-3.5 border-b border-[#182e22]/80 bg-[#0a130e]/85 backdrop-blur-md flex flex-wrap items-center justify-between gap-2">
         {/* Left: Title & Mode Switchers */}
         <div className="flex items-center space-x-2">
           <div className="flex items-center space-x-1.5 text-xs font-semibold text-slate-200 mr-2">
@@ -163,7 +163,7 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
           </div>
 
           {/* Mode Switcher Pills */}
-          <div className="flex items-center bg-[#070c09] border border-[#1b3427] rounded-lg p-0.5">
+          <div className="flex items-center bg-[#070c09]/90 border border-[#1b3427] rounded-lg p-0.5">
             <button
               onClick={() => setViewMode('linter')}
               className={`flex items-center space-x-1 text-xs px-2.5 py-1 rounded-md transition-colors ${
@@ -274,7 +274,7 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
       {/* 2. MAIN WORKING SURFACE AREA */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3.5">
         {/* Editor or Visual Annotation Surface */}
-        <div className="relative min-h-[170px] bg-[#0a140f] border border-[#1a3325] rounded-xl p-4 shadow-inner flex flex-col justify-between">
+        <div className="relative min-h-[170px] bg-[#0a140f]/85 backdrop-blur-md border border-[#1a3325]/80 rounded-xl p-4 shadow-inner flex flex-col justify-between">
           {isLoading && (
             <div className="absolute inset-x-0 top-0 h-1 bg-emerald-500/30 overflow-hidden rounded-t-xl">
               <div className="h-full bg-emerald-400 w-1/3 animate-scanline" />
@@ -393,9 +393,9 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
         )}
 
         {/* 3. OMNICHANNEL & ASSET INSPECTION DECK (Tabs below editor) */}
-        <div className="bg-[#08120d] border border-[#182e22] rounded-xl overflow-hidden shadow-lg">
+        <div className="bg-[#08120d]/85 backdrop-blur-md border border-[#182e22]/80 rounded-xl overflow-hidden shadow-lg">
           {/* Deck Tab Bar */}
-          <div className="flex items-center justify-between border-b border-[#182e22] bg-[#0a150f] px-3 pt-2">
+          <div className="flex items-center justify-between border-b border-[#182e22]/80 bg-[#0a150f]/90 px-3 pt-2">
             <div className="flex space-x-1">
               <button
                 onClick={() => setActiveBottomTab('canvas')}

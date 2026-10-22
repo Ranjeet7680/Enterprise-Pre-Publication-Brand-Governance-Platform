@@ -1,58 +1,76 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
   <defs>
-    <radialGradient id="wGlow1" cx="30%" cy="25%" r="60%">
-      <stop offset="0%" stop-color="#059669" stop-opacity="0.22" />
-      <stop offset="50%" stop-color="#047857" stop-opacity="0.08" />
-      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    <!-- Radiant Golden Dawn & Ayurvedic Emerald Aura -->
+    <radialGradient id="welcomeGoldAura" cx="50%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.38" />
+      <stop offset="35%" stop-color="#d97706" stop-opacity="0.18" />
+      <stop offset="70%" stop-color="#92400e" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#040c08" stop-opacity="0" />
     </radialGradient>
-    <radialGradient id="wGlow2" cx="75%" cy="65%" r="55%">
-      <stop offset="0%" stop-color="#10b981" stop-opacity="0.18" />
-      <stop offset="60%" stop-color="#064e3b" stop-opacity="0.05" />
-      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    <radialGradient id="welcomeEmeraldAura" cx="20%" cy="70%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.32" />
+      <stop offset="45%" stop-color="#059669" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#040c08" stop-opacity="0" />
     </radialGradient>
-    <radialGradient id="goldGlow" cx="50%" cy="40%" r="35%">
-      <stop offset="0%" stop-color="#d97706" stop-opacity="0.12" />
-      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    <radialGradient id="welcomeTealAura" cx="82%" cy="65%" r="50%">
+      <stop offset="0%" stop-color="#0d9488" stop-opacity="0.28" />
+      <stop offset="50%" stop-color="#042f2e" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#040c08" stop-opacity="0" />
     </radialGradient>
-    <filter id="blurFilter">
-      <feGaussianBlur stdDeviation="40" />
-    </filter>
+
+    <!-- Sacred Botanical Grid Pattern -->
+    <pattern id="botanicalGrid" width="70" height="70" patternUnits="userSpaceOnUse">
+      <path d="M 70 0 L 0 0 0 70" fill="none" stroke="#123522" stroke-width="0.8" opacity="0.45" />
+      <circle cx="0" cy="0" r="1.5" fill="#34d399" opacity="0.35" />
+    </pattern>
   </defs>
 
-  <!-- Deep Obsidian Slate Background -->
-  <rect width="1920" height="1080" fill="#070c09" />
+  <!-- Deep Obsidian Rainforest Base -->
+  <rect width="1920" height="1080" fill="#040c08" />
 
-  <!-- Ethereal Botanical Ambient Lighting -->
-  <circle cx="500" cy="300" r="450" fill="url(#wGlow1)" filter="url(#blurFilter)" />
-  <circle cx="1450" cy="700" r="500" fill="url(#wGlow2)" filter="url(#blurFilter)" />
-  <circle cx="960" cy="450" r="380" fill="url(#goldGlow)" filter="url(#blurFilter)" />
+  <!-- Luminous Halos -->
+  <circle cx="960" cy="320" r="850" fill="url(#welcomeGoldAura)" />
+  <circle cx="380" cy="750" r="750" fill="url(#welcomeEmeraldAura)" />
+  <circle cx="1580" cy="700" r="700" fill="url(#welcomeTealAura)" />
 
-  <!-- Subtle Botanical Leaf Silhouette Filaments -->
-  <g stroke="#10b981" stroke-width="1.2" fill="none" opacity="0.06">
-    <!-- Stylized Amla / Fern Fronds Left -->
-    <path d="M 0 400 Q 250 350, 400 600 T 700 800" />
-    <path d="M 120 420 Q 220 380, 280 480" />
-    <path d="M 220 480 Q 320 420, 380 540" />
-    <path d="M 320 540 Q 420 480, 480 620" />
-    <path d="M 420 620 Q 520 550, 580 700" />
+  <!-- Botanical Grid Foundation -->
+  <rect width="1920" height="1080" fill="url(#botanicalGrid)" opacity="0.75" />
 
-    <!-- Stylized Lotus / Botanical Filament Right -->
-    <path d="M 1920 600 Q 1650 500, 1500 750 T 1200 950" />
-    <path d="M 1800 620 Q 1700 560, 1620 660" />
-    <path d="M 1680 680 Q 1580 610, 1500 730" />
-    <path d="M 1550 740 Q 1450 670, 1380 810" />
+  <!-- Sacred Geometric Lotus & Ayurvedic Botanical Mandala -->
+  <g stroke="#fbbf24" stroke-width="1.6" opacity="0.45" fill="none">
+    <circle cx="960" cy="480" r="140" stroke-dasharray="10 6" />
+    <circle cx="960" cy="480" r="260" stroke-dasharray="16 8" />
+    <circle cx="960" cy="480" r="400" stroke-dasharray="4 8" />
+    <circle cx="960" cy="480" r="560" stroke-dasharray="24 12" />
+
+    <!-- 8 Sacred Lotus Petals -->
+    <path d="M 960 340 C 920 390, 920 440, 960 480 C 1000 440, 1000 390, 960 340 Z" stroke="#34d399" stroke-width="2" />
+    <path d="M 960 620 C 920 570, 920 520, 960 480 C 1000 520, 1000 570, 960 620 Z" stroke="#34d399" stroke-width="2" />
+    <path d="M 820 480 C 870 440, 920 440, 960 480 C 920 520, 870 520, 820 480 Z" stroke="#34d399" stroke-width="2" />
+    <path d="M 1100 480 C 1050 440, 1000 440, 960 480 C 1000 520, 1050 520, 1100 480 Z" stroke="#34d399" stroke-width="2" />
+
+    <!-- Diagonal Sacred Rays -->
+    <line x1="480" y1="0" x2="1440" y2="960" stroke="#f59e0b" stroke-dasharray="8 8" opacity="0.3" />
+    <line x1="1440" y1="0" x2="480" y2="960" stroke="#f59e0b" stroke-dasharray="8 8" opacity="0.3" />
   </g>
 
-  <!-- Subtle Star dust particles -->
-  <g fill="#34d399" opacity="0.35">
-    <circle cx="280" cy="180" r="2" />
-    <circle cx="420" cy="290" r="1.5" />
-    <circle cx="750" cy="140" r="2" />
-    <circle cx="1180" cy="220" r="1.5" />
-    <circle cx="1340" cy="150" r="2.5" />
-    <circle cx="1620" cy="310" r="1.5" />
-    <circle cx="890" cy="780" r="2" />
-    <circle cx="1520" cy="840" r="1.5" />
-    <circle cx="340" cy="720" r="2" />
+  <!-- Luminous Golden Dewdrop Particles -->
+  <g fill="#fef08a">
+    <circle cx="960" cy="220" r="5" opacity="0.95" filter="drop-shadow(0 0 8px #fbbf24)" />
+    <circle cx="680" cy="340" r="6" opacity="0.9" />
+    <circle cx="1240" cy="340" r="6" opacity="0.9" />
+    <circle cx="520" cy="560" r="5" opacity="0.85" filter="drop-shadow(0 0 6px #10b981)" />
+    <circle cx="1400" cy="560" r="5" opacity="0.85" filter="drop-shadow(0 0 6px #10b981)" />
+    <circle cx="780" cy="760" r="4.5" opacity="0.8" />
+    <circle cx="1140" cy="760" r="4.5" opacity="0.8" />
+    <circle cx="960" cy="740" r="6.5" opacity="0.95" filter="drop-shadow(0 0 10px #fbbf24)" />
+  </g>
+
+  <!-- Technical Branding Header -->
+  <g fill="#34d399" opacity="0.55" font-family="monospace" font-size="11">
+    <text x="80" y="105">NADI_NATURALS // LUXURY_AYURVEDIC_BOTANICALS</text>
+    <text x="80" y="995">PRE-PUBLICATION_GOVERNANCE // ZERO_UNILATERAL_AUTHORITY</text>
+    <text x="1460" y="105">98.5%_CERTIFIED_ORGANIC_BOTANICALS</text>
+    <text x="1540" y="995">MASTER_SPEC_VERSION: v2.1</text>
   </g>
 </svg>

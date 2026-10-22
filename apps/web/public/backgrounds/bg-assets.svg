@@ -1,51 +1,79 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
   <defs>
-    <radialGradient id="assetsPurpleGlow" cx="80%" cy="30%" r="55%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.14" />
-      <stop offset="60%" stop-color="#6d28d9" stop-opacity="0.03" />
-      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    <!-- Chromatic Magenta & Violet Prism Glow -->
+    <radialGradient id="assetsRoseGlow" cx="28%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.35" />
+      <stop offset="50%" stop-color="#be123c" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#080711" stop-opacity="0" />
     </radialGradient>
-    <radialGradient id="assetsCyanGlow" cx="20%" cy="70%" r="50%">
-      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.12" />
-      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    <radialGradient id="assetsVioletGlow" cx="75%" cy="58%" r="55%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.32" />
+      <stop offset="50%" stop-color="#6d28d9" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#080711" stop-opacity="0" />
     </radialGradient>
-    <pattern id="isometricGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 40 M 0 0 L 40 40" stroke="#13261c" stroke-width="0.5" opacity="0.2" />
+    <radialGradient id="assetsEmeraldGlow" cx="50%" cy="85%" r="45%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#080711" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Design System Typography & Bounding Grid -->
+    <pattern id="assetsGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#251b3a" stroke-width="0.8" opacity="0.45" />
+      <circle cx="0" cy="0" r="1.5" fill="#f43f5e" opacity="0.3" />
     </pattern>
   </defs>
 
-  <rect width="1920" height="1080" fill="#070c09" />
-  <rect width="1920" height="1080" fill="url(#isometricGrid)" />
-  <circle cx="1536" cy="324" r="600" fill="url(#assetsPurpleGlow)" />
-  <circle cx="384" cy="756" r="550" fill="url(#assetsCyanGlow)" />
+  <!-- Deep Obsidian Violet Foundation -->
+  <rect width="1920" height="1080" fill="#080711" />
 
-  <!-- Golden Ratio Spiral & Crop Framing Guides -->
-  <g stroke="#a78bfa" stroke-width="1.2" opacity="0.12" fill="none">
-    <!-- 16:9, 1:1, 4:5, 9:16 Visual Guides -->
-    <rect x="260" y="140" width="1400" height="800" rx="4" stroke-dasharray="10 10" />
-    <rect x="560" y="140" width="800" height="800" rx="4" stroke="#06b6d4" opacity="0.15" />
-    <rect x="640" y="140" width="640" height="800" rx="4" stroke="#34d399" opacity="0.12" />
+  <!-- Luminous Chromatic Halos -->
+  <circle cx="540" cy="420" r="750" fill="url(#assetsRoseGlow)" />
+  <circle cx="1450" cy="620" r="700" fill="url(#assetsVioletGlow)" />
+  <circle cx="960" cy="900" r="600" fill="url(#assetsEmeraldGlow)" />
 
-    <!-- Golden Spiral Segments -->
-    <path d="M 960 540 A 340 340 0 0 1 1300 880" />
-    <path d="M 1300 880 A 550 550 0 0 1 750 1430" />
-    <path d="M 960 540 A 210 210 0 0 0 750 330" />
-    <path d="M 750 330 A 130 130 0 0 0 620 460" />
+  <!-- Design Foundation Grid -->
+  <rect width="1920" height="1080" fill="url(#assetsGrid)" opacity="0.8" />
+
+  <!-- Golden Ratio Fibonacci Spiral (Geometric Harmony) -->
+  <path d="M 960 540 A 55 55 0 0 1 1015 595 A 89 89 0 0 1 926 684 A 144 144 0 0 1 782 540 A 233 233 0 0 1 1015 307 A 377 377 0 0 1 1392 684 A 610 610 0 0 1 782 1294"
+        fill="none" stroke="#fb7185" stroke-width="2.2" opacity="0.45" stroke-dasharray="14 6" />
+
+  <!-- Computer Vision Viewfinder Framing Brackets -->
+  <g stroke="#f43f5e" stroke-width="2.5" opacity="0.65" fill="none">
+    <!-- Center Asset Bounding Box [Master Spec: 3.50:1] -->
+    <rect x="680" y="380" width="560" height="160" rx="8" stroke="#10b981" stroke-width="2" stroke-dasharray="8 6" />
+    <path d="M 660 410 L 660 360 L 710 360" />
+    <path d="M 1260 410 L 1260 360 L 1210 360" />
+    <path d="M 660 510 L 660 560 L 710 560" />
+    <path d="M 1260 510 L 1260 560 L 1210 560" />
+
+    <!-- Optical Focal Center Crosshairs -->
+    <circle cx="960" cy="460" r="8" fill="none" stroke="#34d399" stroke-width="1.5" />
+    <line x1="940" y1="460" x2="980" y2="460" stroke="#34d399" stroke-width="1.5" />
+    <line x1="960" y1="440" x2="960" y2="480" stroke="#34d399" stroke-width="1.5" />
   </g>
 
-  <!-- Chromatic Spectrum Ribbon Lines -->
-  <g stroke-width="1" opacity="0.18">
-    <path d="M 0 500 C 480 420, 960 620, 1920 480" stroke="#ec4899" fill="none" />
-    <path d="M 0 520 C 480 440, 960 640, 1920 500" stroke="#8b5cf6" fill="none" />
-    <path d="M 0 540 C 480 460, 960 660, 1920 520" stroke="#06b6d4" fill="none" />
-    <path d="M 0 560 C 480 480, 960 680, 1920 540" stroke="#10b981" fill="none" />
+  <!-- Chromatic Spectrum Color Swatch Dispersion Orbs -->
+  <g opacity="0.75">
+    <circle cx="340" cy="320" r="28" fill="#f43f5e" opacity="0.4" filter="drop-shadow(0 0 12px #f43f5e)" />
+    <circle cx="410" cy="320" r="28" fill="#8b5cf6" opacity="0.4" filter="drop-shadow(0 0 12px #8b5cf6)" />
+    <circle cx="480" cy="320" r="28" fill="#06b6d4" opacity="0.4" filter="drop-shadow(0 0 12px #06b6d4)" />
+    <circle cx="550" cy="320" r="28" fill="#10b981" opacity="0.4" filter="drop-shadow(0 0 12px #10b981)" />
   </g>
 
-  <!-- Precision Viewport Crop Corners -->
-  <g stroke="#38bdf8" stroke-width="2" opacity="0.3">
-    <path d="M 540 160 L 540 120 L 580 120" fill="none" />
-    <path d="M 1380 160 L 1380 120 L 1340 120" fill="none" />
-    <path d="M 540 920 L 540 960 L 580 960" fill="none" />
-    <path d="M 1380 920 L 1380 960 L 1340 960" fill="none" />
+  <!-- Optical Aspect Ratio Caliper Markings -->
+  <g stroke="#a855f7" stroke-width="1.2" opacity="0.45" fill="none">
+    <circle cx="1500" cy="380" r="140" stroke-dasharray="10 8" />
+    <circle cx="1500" cy="380" r="220" stroke-dasharray="4 6" />
+    <line x1="1240" y1="380" x2="1760" y2="380" stroke-dasharray="4 4" />
+    <line x1="1500" y1="120" x2="1500" y2="640" stroke-dasharray="4 4" />
+  </g>
+
+  <!-- Technical CV Geometry Metadata -->
+  <g fill="#fb7185" opacity="0.55" font-family="monospace" font-size="11">
+    <text x="80" y="105">VISUAL_ASSET_STUDIO // COMPUTER_VISION_GEOMETRY</text>
+    <text x="80" y="995">ASPECT_RATIO_GATE: 3.50:1_STRICT // WCAG_AA_CONTRAST: &gt;=4.5:1</text>
+    <text x="1480" y="105">OCR_CONFIDENCE_THRESHOLD: 0.85</text>
+    <text x="1560" y="995">COLOR_SPACE: sRGB_P3</text>
   </g>
 </svg>

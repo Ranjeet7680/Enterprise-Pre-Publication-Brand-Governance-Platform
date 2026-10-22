@@ -36,7 +36,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onSave }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* AI Provider Gateway (IS 16) */}
-        <div className="p-6 rounded-2xl bg-[#0c1410] border border-[#1e3427] space-y-4">
+        <div className="p-6 rounded-2xl bg-[#0c1410]/85 backdrop-blur-md border border-[#1e3427]/80 space-y-4 shadow-xl">
           <div className="flex items-center space-x-2">
             <Cpu className="w-5 h-5 text-emerald-400" />
             <h3 className="font-bold text-slate-100 text-sm">Model Provider Gateway (IS 16)</h3>
@@ -86,7 +86,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onSave }) => {
         </div>
 
         {/* Retention & Privacy Lifecycle (IS 18) */}
-        <div className="p-6 rounded-2xl bg-[#0c1410] border border-[#1e3427] space-y-4">
+        <div className="p-6 rounded-2xl bg-[#0c1410]/85 backdrop-blur-md border border-[#1e3427]/80 space-y-4 shadow-xl">
           <div className="flex items-center space-x-2">
             <Database className="w-5 h-5 text-emerald-400" />
             <h3 className="font-bold text-slate-100 text-sm">Privacy &amp; Data Retention (IS 18)</h3>
@@ -119,7 +119,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onSave }) => {
       </div>
 
       {/* Role Permission Matrix (IS 50) */}
-      <div className="p-6 rounded-2xl bg-[#0c1410] border border-[#1e3427] space-y-4">
+      <div className="p-6 rounded-2xl bg-[#0c1410]/85 backdrop-blur-md border border-[#1e3427]/80 space-y-4 shadow-xl">
         <div className="flex items-center space-x-2">
           <Users className="w-5 h-5 text-emerald-400" />
           <h3 className="font-bold text-slate-100 text-sm">Role-Based Access Control Matrix (IS 01 &amp; IS 50)</h3>

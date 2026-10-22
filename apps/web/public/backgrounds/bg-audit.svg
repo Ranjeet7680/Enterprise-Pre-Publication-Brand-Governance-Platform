@@ -1,51 +1,84 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
   <defs>
-    <radialGradient id="auditShieldGlow" cx="50%" cy="45%" r="50%">
-      <stop offset="0%" stop-color="#10b981" stop-opacity="0.16" />
-      <stop offset="60%" stop-color="#064e3b" stop-opacity="0.04" />
-      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    <!-- Cryptographic Indigo & Security Emerald Halos -->
+    <radialGradient id="auditIndigoGlow" cx="30%" cy="45%" r="52%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.36" />
+      <stop offset="50%" stop-color="#4338ca" stop-opacity="0.14" />
+      <stop offset="85%" stop-color="#312e81" stop-opacity="0.04" />
+      <stop offset="100%" stop-color="#050713" stop-opacity="0" />
     </radialGradient>
-    <radialGradient id="auditCrimsonGlow" cx="85%" cy="20%" r="45%">
-      <stop offset="0%" stop-color="#e11d48" stop-opacity="0.10" />
-      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    <radialGradient id="auditEmeraldGlow" cx="75%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.28" />
+      <stop offset="50%" stop-color="#065f46" stop-opacity="0.10" />
+      <stop offset="100%" stop-color="#050713" stop-opacity="0" />
     </radialGradient>
-    <pattern id="hexGrid" width="60" height="104" patternUnits="userSpaceOnUse" patternTransform="scale(1.2)">
-      <path d="M 30 0 L 60 17.32 L 60 52 L 30 69.28 L 0 52 L 0 17.32 Z" fill="none" stroke="#142c20" stroke-width="0.8" opacity="0.3" />
-      <path d="M 30 69.28 L 60 86.6 L 60 121.28 L 30 138.56 L 0 121.28 L 0 86.6 Z" fill="none" stroke="#142c20" stroke-width="0.8" opacity="0.3" />
+
+    <!-- Tamper-Evident Security Lattice -->
+    <pattern id="securityGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#181e3a" stroke-width="0.8" opacity="0.5" />
+      <circle cx="0" cy="0" r="1.5" fill="#818cf8" opacity="0.35" />
     </pattern>
   </defs>
 
-  <rect width="1920" height="1080" fill="#070c09" />
-  <rect width="1920" height="1080" fill="url(#hexGrid)" />
-  <circle cx="960" cy="486" r="650" fill="url(#auditShieldGlow)" />
-  <circle cx="1632" cy="216" r="450" fill="url(#auditCrimsonGlow)" />
+  <!-- Deep Obsidian Indigo Foundation -->
+  <rect width="1920" height="1080" fill="#050713" />
 
-  <!-- Cryptographic Shield Outline (IS 43 SHA-256 Immutability) -->
-  <g stroke="#10b981" stroke-width="1.5" opacity="0.15" fill="none">
-    <path d="M 960 220 L 1180 300 V 550 C 1180 720 960 840 960 840 C 960 840 740 720 740 550 V 300 Z" />
-    <path d="M 960 270 L 1130 330 V 530 C 1130 670 960 770 960 770 C 960 770 790 670 790 530 V 330 Z" stroke-dasharray="6 6" />
-    <!-- Center Cryptographic Key Icon Lattice -->
-    <circle cx="960" cy="470" r="45" />
-    <path d="M 960 515 V 610 M 960 550 H 985 M 960 580 H 980" />
+  <!-- Cryptographic Ambient Radiance -->
+  <circle cx="580" cy="480" r="750" fill="url(#auditIndigoGlow)" />
+  <circle cx="1440" cy="580" r="700" fill="url(#auditEmeraldGlow)" />
+
+  <!-- Security Grid Lattice -->
+  <rect width="1920" height="1080" fill="url(#securityGrid)" opacity="0.8" />
+
+  <!-- Central Cryptographic Shield & Padlock Geometry -->
+  <g stroke="#818cf8" stroke-width="2" opacity="0.55" fill="none">
+    <!-- Outer Shield Crest -->
+    <path d="M 960 220 L 1180 290 C 1180 500, 1080 680, 960 760 C 840 680, 740 500, 740 290 Z" />
+    <!-- Inner Concentric Shield Core -->
+    <path d="M 960 270 L 1130 330 C 1130 490, 1050 630, 960 700 C 870 630, 790 490, 790 330 Z" stroke="#10b981" stroke-width="1.5" stroke-dasharray="10 6" />
+
+    <!-- Padlock Shackle & Vault Mechanism -->
+    <path d="M 920 450 L 920 390 C 920 365, 1000 365, 1000 390 L 1000 450" stroke="#818cf8" stroke-width="3" />
+    <rect x="890" y="450" width="140" height="110" rx="10" stroke="#818cf8" stroke-width="2.5" fill="#070a1a" fill-opacity="0.8" />
+    <circle cx="960" cy="500" r="8" fill="#10b981" />
+    <path d="M 960 508 L 960 535" stroke="#10b981" stroke-width="3" />
   </g>
 
-  <!-- Blockchain Chain Links / Immutable Ledger Connectors -->
-  <g stroke="#34d399" stroke-width="1" opacity="0.18" fill="none">
-    <line x1="100" y1="540" x2="740" y2="540" stroke-dasharray="8 6" />
-    <line x1="1180" y1="540" x2="1820" y2="540" stroke-dasharray="8 6" />
-    <rect x="220" y="500" width="120" height="80" rx="8" stroke="#10b981" />
-    <rect x="480" y="500" width="120" height="80" rx="8" stroke="#10b981" />
-    <rect x="1320" y="500" width="120" height="80" rx="8" stroke="#10b981" />
-    <rect x="1580" y="500" width="120" height="80" rx="8" stroke="#10b981" />
+  <!-- Immutable Blockchain Block Sequence (SHA-256 Linkages) -->
+  <g stroke="#6366f1" stroke-width="1.5" opacity="0.45" fill="none">
+    <!-- Block v1 -->
+    <rect x="180" y="650" width="160" height="90" rx="8" stroke-dasharray="8 4" />
+    <text x="200" y="690" fill="#a5b4fc" font-family="monospace" font-size="10">BLOCK_v1</text>
+    <text x="200" y="715" fill="#818cf8" font-family="monospace" font-size="9">6a89c89e...</text>
+
+    <!-- Block v2 -->
+    <rect x="420" y="650" width="160" height="90" rx="8" stroke="#10b981" stroke-width="2" />
+    <text x="440" y="690" fill="#6ee7b7" font-family="monospace" font-size="10">BLOCK_v2</text>
+    <text x="440" y="715" fill="#34d399" font-family="monospace" font-size="9">871ce66f...</text>
+
+    <!-- Hash Chain Links -->
+    <path d="M 340 695 L 420 695" stroke="#818cf8" stroke-width="2" marker-end="url(#arrow)" />
+    <path d="M 580 695 L 660 695" stroke="#818cf8" stroke-width="2" stroke-dasharray="4 4" />
+
+    <!-- Right Side Blocks -->
+    <rect x="1340" y="650" width="160" height="90" rx="8" stroke-dasharray="8 4" />
+    <rect x="1580" y="650" width="160" height="90" rx="8" stroke="#10b981" stroke-width="2" />
+    <path d="M 1500 695 L 1580 695" stroke="#10b981" stroke-width="2" />
   </g>
 
-  <!-- Tamper-evident Security Sensor Nodes -->
-  <g fill="#34d399" opacity="0.4">
-    <circle cx="280" cy="540" r="4" />
-    <circle cx="540" cy="540" r="4" />
-    <circle cx="1380" cy="540" r="4" />
-    <circle cx="1640" cy="540" r="4" />
-    <circle cx="960" cy="220" r="5" />
-    <circle cx="960" cy="840" r="5" />
+  <!-- Cryptographic SHA-256 Binary & Hex Streams -->
+  <g fill="#818cf8" opacity="0.3" font-family="monospace" font-size="9">
+    <text x="120" y="320">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</text>
+    <text x="120" y="340">5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8</text>
+    <text x="1200" y="320">ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb</text>
+    <text x="1200" y="340">871ce66f76b89e246835a6f23c91a0cba4837890a88ef12349018239019238aa</text>
+  </g>
+
+  <!-- Technical Audit & Security Labels -->
+  <g fill="#818cf8" opacity="0.55" font-family="monospace" font-size="11">
+    <text x="80" y="105">SECURITY_AUDIT_TRAIL // IMMUTABLE_CHAIN_OF_CUSTODY</text>
+    <text x="80" y="995">ZERO_UNILATERAL_MODEL_AUTHORITY // CRYPTOGRAPHIC_SEAL: SHA-256</text>
+    <text x="1460" y="105">OPTIMISTIC_LOCK_ENFORCED</text>
+    <text x="1540" y="995">POST_APPROVAL_EDIT: INVALIDATES</text>
   </g>
 </svg>

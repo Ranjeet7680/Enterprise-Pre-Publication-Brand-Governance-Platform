@@ -40,7 +40,7 @@ const CHANNEL_LIMITS: Record<string, { maxChars: number; label: string }> = {
 };
 
 const TAB_BACKGROUNDS: Record<string, string> = {
-  welcome: '/backgrounds/bg-welcome.jpg',
+  welcome: '/backgrounds/bg-welcome.svg',
   studio: '/backgrounds/bg-studio.svg',
   queue: '/backgrounds/bg-queue.svg',
   sources: '/backgrounds/bg-sources.svg',
@@ -50,15 +50,15 @@ const TAB_BACKGROUNDS: Record<string, string> = {
   settings: '/backgrounds/bg-settings.svg',
 };
 
-const TAB_THEME_LABELS: Record<string, { label: string; motif: string }> = {
-  welcome: { label: 'Ayurvedic Botanical Luxury', motif: 'High-Definition Generative Wallpaper' },
-  studio: { label: 'Precision Alignment Grid', motif: 'Governance Reticles & Drafting Lines' },
-  queue: { label: 'Telemetry Priority Conduits', motif: 'SLA Velocity Waves' },
-  sources: { label: 'Sacred Knowledge Filigree', motif: 'Master Claims Graph' },
-  assets: { label: 'Chromatic Spectrum & Golden Spiral', motif: 'Visual Geometry Guides' },
-  analytics: { label: 'Radar Telemetry Network', motif: 'Compliance Vectors' },
-  audit: { label: 'Cryptographic Hex Lattice', motif: 'SHA-256 Immutable Seals' },
-  settings: { label: 'PCB Governance Traces', motif: 'Policy Bus Matrices' },
+const TAB_THEME_LABELS: Record<string, { label: string; motif: string; icon: string }> = {
+  welcome: { label: 'Ayurvedic Botanical Luxury', motif: 'Golden Dawn & Western Ghats Lotus Geometry', icon: '🌿' },
+  studio: { label: 'Precision Alignment Grid', motif: 'Governance Reticles & Drafting Lines', icon: '📐' },
+  queue: { label: 'Telemetry Priority Conduits', motif: 'SLA Velocity Waves & Stream Conduits', icon: '⚡' },
+  sources: { label: 'Sacred Knowledge Neural Graph', motif: 'Master Claims Graph & Archival Truth', icon: '📜' },
+  assets: { label: 'Chromatic Spectrum & Fibonacci', motif: 'Optical Viewfinder & Framing Calipers', icon: '🎨' },
+  analytics: { label: 'Radar Telemetry Network', motif: 'Polar Dome & Compliance Frequency Vectors', icon: '📡' },
+  audit: { label: 'Cryptographic Fortress Vault', motif: 'Hexagonal Shield & SHA-256 Block Chain', icon: '🛡️' },
+  settings: { label: 'Mechanical Governance Clockwork', motif: 'Interlocking Sprockets & Policy Dials', icon: '⚙️' },
 };
 
 export default function App() {
@@ -692,26 +692,25 @@ export default function App() {
   }) || [];
 
   return (
-    <div className="relative min-h-screen bg-[#070c09] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white overflow-hidden">
+    <div className="relative min-h-screen bg-[#040805] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white overflow-hidden">
       {/* Restrained Completion Particle Effect (IS 22) */}
       <CelebrationFX active={showCelebration} onComplete={() => setShowCelebration(false)} />
 
-      {/* DYNAMIC PER-PAGE BACKGROUND LAYER WITH CROSS-FADE */}
+      {/* DYNAMIC PER-PAGE DISTINCT BACKGROUND LAYER WITH VIBRANT CROSS-FADE */}
       <div
         key={activeTab}
         aria-hidden="true"
         className="fixed inset-0 pointer-events-none z-0 bg-cover bg-center bg-no-repeat animate-fadeIn transition-all duration-700"
         style={{
           backgroundImage: `url(${TAB_BACKGROUNDS[activeTab] || '/backgrounds/bg-studio.svg'})`,
-          opacity: activeTab === 'welcome' ? 0.28 : 0.45,
-          mixBlendMode: activeTab === 'welcome' ? 'normal' : 'screen',
+          opacity: 0.95,
         }}
       />
 
-      {/* OBSIDIAN VIGNETTE (WCAG 2.1 AA COMPLIANCE OVERLAY) */}
+      {/* DELICATE EDGE VIGNETTE (PRESERVES ARTWORK WHILE ENSURING WCAG 2.1 AA LEGIBILITY) */}
       <div
         aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-b from-[#070c09]/80 via-[#070c09]/30 to-[#070c09]/90 backdrop-blur-[0.5px]"
+        className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-b from-black/30 via-transparent to-black/45"
       />
 
       {/* Toast Notification */}
@@ -836,9 +835,12 @@ export default function App() {
 
         <div className="flex items-center space-x-2 shrink-0">
           {/* Active Background Theme Indicator */}
-          <div className="hidden xl:flex items-center space-x-2 text-[10px] font-mono text-emerald-400/90 bg-[#0c1611]/90 px-3 py-1.5 rounded-lg border border-emerald-900/40">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-slate-400">Background:</span>
+          <div
+            className="hidden lg:flex items-center space-x-2 text-xs font-mono bg-[#0c1611]/90 px-3 py-1.5 rounded-lg border border-emerald-800/60 shadow-sm"
+            title={`Active Page Motif: ${TAB_THEME_LABELS[activeTab]?.motif || 'Brand Motif'}`}
+          >
+            <span>{TAB_THEME_LABELS[activeTab]?.icon || '🎨'}</span>
+            <span className="text-slate-400">Theme:</span>
             <span className="text-emerald-300 font-semibold">{TAB_THEME_LABELS[activeTab]?.label || 'Brand Standard'}</span>
           </div>
 
@@ -876,7 +878,7 @@ export default function App() {
         {activeTab === 'studio' && (
           <div className="h-full flex flex-col">
             {/* Top Studio Bar */}
-            <div className="px-6 py-3 border-b border-[#182e22] bg-[#0a130e] flex items-center justify-between">
+            <div className="px-6 py-3 border-b border-[#182e22]/80 bg-[#0a130e]/85 backdrop-blur-md flex items-center justify-between">
               <div className="flex items-center space-x-3 flex-1 mr-4">
                 <input
                   type="text"
@@ -966,7 +968,7 @@ export default function App() {
             {/* Studio Main Split (Interactive Surface on Left, Findings on Right) */}
             <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
               {/* LEFT COLUMN: INTERACTIVE WORKING SURFACE & PREVIEW (7 Cols) */}
-              <div className="lg:col-span-7 border-r border-[#182e22] flex flex-col h-full bg-[#070c09] overflow-hidden">
+              <div className="lg:col-span-7 border-r border-[#182e22]/80 flex flex-col h-full bg-[#070c09]/80 backdrop-blur-sm overflow-hidden">
                 <div className="flex-1 overflow-hidden">
                   <InteractiveWorkingSurface
                     currentText={currentText}
@@ -989,7 +991,7 @@ export default function App() {
                 </div>
 
                 {/* BOTTOM WORKFLOW ACTIONS BAR */}
-                <div className="p-3.5 border-t border-[#182e22] bg-[#0a130e] flex items-center justify-between shrink-0">
+                <div className="p-3.5 border-t border-[#182e22]/80 bg-[#0a130e]/85 backdrop-blur-md flex items-center justify-between shrink-0">
                   <div className="flex items-center space-x-2">
                     <span className="text-xs text-slate-400">Review Decision:</span>
                     {contentItem?.approved_version ? (
@@ -1036,9 +1038,9 @@ export default function App() {
               </div>
 
               {/* RIGHT COLUMN: FINDINGS STREAM & EVIDENCE CITATIONS (5 Cols) */}
-              <div className="lg:col-span-5 flex flex-col h-full bg-[#070c09] overflow-hidden border-l border-[#182e22]">
+              <div className="lg:col-span-5 flex flex-col h-full bg-[#070c09]/80 backdrop-blur-sm overflow-hidden border-l border-[#182e22]/80">
                 {/* Findings Summary Header */}
-                <div className="p-4 border-b border-[#182e22] bg-[#0a130e] space-y-3">
+                <div className="p-4 border-b border-[#182e22]/80 bg-[#0a130e]/85 backdrop-blur-md space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                       <Shield className="w-4 h-4 text-emerald-400" />
@@ -1423,7 +1425,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="bg-[#0b1410] border border-[#1c3426] rounded-2xl overflow-hidden shadow-xl">
+            <div className="bg-[#0b1410]/80 backdrop-blur-md border border-[#1c3426]/80 rounded-2xl overflow-hidden shadow-2xl">
               <table className="w-full text-left text-xs text-slate-300">
                 <thead className="bg-[#0f1f16] text-slate-400 font-mono uppercase text-[10px] border-b border-[#1c3426]">
                   <tr>
@@ -1524,7 +1526,7 @@ export default function App() {
             {/* Approved Sources Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {sources.map((src) => (
-                <div key={src.id} className="p-5 rounded-xl bg-[#0b1410] border border-[#1b3426] space-y-3">
+                <div key={src.id} className="p-5 rounded-xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 space-y-3 shadow-xl">
                   <div className="flex items-start justify-between">
                     <div>
                       <h3 className="font-semibold text-slate-100 text-sm">{src.title}</h3>
@@ -1572,7 +1574,7 @@ export default function App() {
             <LogoInspectorTool />
 
             {/* WCAG Contrast Tool */}
-            <div className="p-6 rounded-2xl bg-[#0b1410] border border-[#1b3426] space-y-4">
+            <div className="p-6 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 space-y-4 shadow-xl">
               <div className="flex items-center space-x-2">
                 <Eye className="w-5 h-5 text-emerald-400" />
                 <h3 className="font-bold text-slate-100 text-sm">WCAG 2.1 Color Contrast Evaluator (IS 11)</h3>
@@ -1648,22 +1650,22 @@ export default function App() {
 
             {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="p-5 rounded-2xl bg-[#0b1410] border border-[#1b3426]">
+              <div className="p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
                 <div className="text-xs text-slate-400 uppercase font-medium">Reviews Conducted</div>
                 <div className="text-2xl font-bold text-slate-100 mt-1">{analytics?.metrics?.total_reviews_conducted || 18}</div>
                 <div className="text-[11px] text-emerald-400 mt-1">100% pre-publication gate</div>
               </div>
-              <div className="p-5 rounded-2xl bg-[#0b1410] border border-[#1b3426]">
+              <div className="p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
                 <div className="text-xs text-slate-400 uppercase font-medium">Avg First Feedback</div>
                 <div className="text-2xl font-bold text-emerald-400 mt-1">{analytics?.metrics?.avg_first_feedback_time_seconds || 1.4}s</div>
                 <div className="text-[11px] text-slate-400 mt-1">Instant deterministic engine</div>
               </div>
-              <div className="p-5 rounded-2xl bg-[#0b1410] border border-[#1b3426]">
+              <div className="p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
                 <div className="text-xs text-slate-400 uppercase font-medium">Suggestion Acceptance</div>
                 <div className="text-2xl font-bold text-emerald-300 mt-1">{analytics?.metrics?.suggestion_acceptance_rate || '74.2%'}</div>
                 <div className="text-[11px] text-slate-400 mt-1">Single-click patch application</div>
               </div>
-              <div className="p-5 rounded-2xl bg-[#0b1410] border border-[#1b3426]">
+              <div className="p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
                 <div className="text-xs text-slate-400 uppercase font-medium">Stale Sources Flagged</div>
                 <div className="text-2xl font-bold text-amber-400 mt-1">{analytics?.metrics?.stale_sources_count || 1}</div>
                 <div className="text-[11px] text-amber-400/80 mt-1">Festive Glow Kit promo expired</div>
@@ -1671,7 +1673,7 @@ export default function App() {
             </div>
 
             {/* Guideline Clarity Analysis (IS 34) */}
-            <div className="p-6 rounded-2xl bg-[#0b1410] border border-[#1b3426] space-y-4">
+            <div className="p-6 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 space-y-4 shadow-xl">
               <h3 className="font-bold text-slate-100 text-sm flex items-center space-x-2">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
                 <span>Guideline Clarity Gaps &amp; System Recommendations</span>
@@ -1705,7 +1707,7 @@ export default function App() {
 
             {/* Quality Benchmark Scores (IS 23) */}
             {benchmark && (
-              <div className="p-6 rounded-2xl bg-[#0b1410] border border-[#1b3426] space-y-3">
+              <div className="p-6 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 space-y-3 shadow-xl">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-slate-100 text-sm flex items-center space-x-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400" />
@@ -1738,7 +1740,7 @@ export default function App() {
             {/* Audit Log Table */}
             <div className="space-y-3">
               <h3 className="font-semibold text-slate-200 text-sm">Immutable Audit Trail</h3>
-              <div className="bg-[#0b1410] border border-[#1c3426] rounded-2xl overflow-hidden">
+              <div className="bg-[#0b1410]/85 backdrop-blur-md border border-[#1c3426]/80 rounded-2xl overflow-hidden shadow-2xl">
                 <table className="w-full text-left text-xs text-slate-300">
                   <thead className="bg-[#0f1f16] text-slate-400 font-mono uppercase text-[10px]">
                     <tr>

@@ -1,36 +1,95 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
   <defs>
-    <radialGradient id="studioCenterGlow" cx="50%" cy="30%" r="50%">
-      <stop offset="0%" stop-color="#064e3b" stop-opacity="0.20" />
-      <stop offset="60%" stop-color="#022c22" stop-opacity="0.06" />
-      <stop offset="100%" stop-color="#070c09" stop-opacity="0" />
+    <!-- Studio Ambient Radial Glows -->
+    <radialGradient id="studioMintGlow" cx="28%" cy="32%" r="45%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.32" />
+      <stop offset="45%" stop-color="#059669" stop-opacity="0.14" />
+      <stop offset="80%" stop-color="#022c22" stop-opacity="0.04" />
+      <stop offset="100%" stop-color="#040c08" stop-opacity="0" />
     </radialGradient>
-    <pattern id="precisionGrid" width="60" height="60" patternUnits="userSpaceOnUse">
-      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#13261c" stroke-width="0.8" opacity="0.35" />
-      <circle cx="0" cy="0" r="1.5" fill="#10b981" opacity="0.25" />
+    <radialGradient id="studioCyanGlow" cx="78%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.28" />
+      <stop offset="50%" stop-color="#0e7490" stop-opacity="0.10" />
+      <stop offset="100%" stop-color="#040c08" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="studioGoldGlow" cx="50%" cy="85%" r="40%">
+      <stop offset="0%" stop-color="#d97706" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#040c08" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Precision Technical Drafting Grid -->
+    <pattern id="studioMicroGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#123824" stroke-width="0.7" opacity="0.45" />
+    </pattern>
+    <pattern id="studioMajorGrid" width="150" height="150" patternUnits="userSpaceOnUse">
+      <rect width="150" height="150" fill="url(#studioMicroGrid)" />
+      <path d="M 150 0 L 0 0 0 150" fill="none" stroke="#10b981" stroke-width="1.2" opacity="0.4" />
+      <!-- Coordinate intersections -->
+      <circle cx="0" cy="0" r="2.5" fill="#34d399" opacity="0.65" />
+      <path d="M -6 0 L 6 0 M 0 -6 L 0 6" stroke="#34d399" stroke-width="0.8" opacity="0.6" />
     </pattern>
   </defs>
 
-  <rect width="1920" height="1080" fill="#070c09" />
-  <rect width="1920" height="1080" fill="url(#precisionGrid)" />
-  <circle cx="960" cy="350" r="700" fill="url(#studioCenterGlow)" />
+  <!-- Deep Obsidian Slate Foundation -->
+  <rect width="1920" height="1080" fill="#040c08" />
 
-  <!-- Laser Alignment Drafting Lines -->
-  <g stroke="#10b981" stroke-width="1" opacity="0.08">
-    <line x1="0" y1="120" x2="1920" y2="120" stroke-dasharray="8 8" />
-    <line x1="0" y1="960" x2="1920" y2="960" stroke-dasharray="8 8" />
-    <line x1="480" y1="0" x2="480" y2="1080" stroke-dasharray="8 8" />
-    <line x1="1440" y1="0" x2="1440" y2="1080" stroke-dasharray="8 8" />
-    <!-- Diagonal Framing Guides -->
-    <line x1="0" y1="0" x2="300" y2="300" />
-    <line x1="1920" y1="0" x2="1620" y2="300" />
+  <!-- Luminous Ambient Spotlights -->
+  <circle cx="540" cy="350" r="750" fill="url(#studioMintGlow)" />
+  <circle cx="1500" cy="650" r="700" fill="url(#studioCyanGlow)" />
+  <circle cx="960" cy="920" r="600" fill="url(#studioGoldGlow)" />
+
+  <!-- Precision Engineering Grid Overlay -->
+  <rect width="1920" height="1080" fill="url(#studioMajorGrid)" opacity="0.85" />
+
+  <!-- Technical Axis Calibration Rays -->
+  <g stroke="#10b981" stroke-width="1.2" opacity="0.35">
+    <line x1="0" y1="120" x2="1920" y2="120" stroke-dasharray="12 6" />
+    <line x1="0" y1="960" x2="1920" y2="960" stroke-dasharray="12 6" />
+    <line x1="320" y1="0" x2="320" y2="1080" stroke-dasharray="10 5" />
+    <line x1="1100" y1="0" x2="1100" y2="1080" stroke-dasharray="10 5" />
+    <line x1="1600" y1="0" x2="1600" y2="1080" stroke-dasharray="10 5" />
   </g>
 
-  <!-- Precision Corner Reticles -->
-  <g stroke="#34d399" stroke-width="1.5" opacity="0.25">
-    <path d="M 80 120 L 80 80 L 120 80" fill="none" />
-    <path d="M 1840 120 L 1840 80 L 1800 80" fill="none" />
-    <path d="M 80 960 L 80 1000 L 120 1000" fill="none" />
-    <path d="M 1840 960 L 1840 1000 L 1800 1000" fill="none" />
+  <!-- Governance Viewfinder Reticles & Calipers -->
+  <g stroke="#34d399" stroke-width="2" opacity="0.55" fill="none">
+    <!-- Top-Left Calibration Bracket -->
+    <path d="M 60 140 L 60 80 L 120 80" />
+    <circle cx="60" cy="80" r="4" fill="#34d399" />
+    <!-- Top-Right Calibration Bracket -->
+    <path d="M 1860 140 L 1860 80 L 1800 80" />
+    <circle cx="1860" cy="80" r="4" fill="#34d399" />
+    <!-- Bottom-Left Calibration Bracket -->
+    <path d="M 60 940 L 60 1000 L 120 1000" />
+    <circle cx="60" cy="1000" r="4" fill="#34d399" />
+    <!-- Bottom-Right Calibration Bracket -->
+    <path d="M 1860 940 L 1860 1000 L 1800 1000" />
+    <circle cx="1860" cy="1000" r="4" fill="#34d399" />
+  </g>
+
+  <!-- Central Circular Drafting Compass Rings -->
+  <g stroke="#10b981" stroke-width="1.2" opacity="0.3" fill="none">
+    <circle cx="600" cy="460" r="220" stroke-dasharray="6 6" />
+    <circle cx="600" cy="460" r="340" stroke-dasharray="16 8" />
+    <circle cx="600" cy="460" r="460" stroke-dasharray="2 8" />
+    <!-- Crosshairs -->
+    <line x1="120" y1="460" x2="1080" y2="460" stroke-dasharray="4 4" />
+    <line x1="600" y1="0" x2="600" y2="920" stroke-dasharray="4 4" />
+  </g>
+
+  <!-- High-Tech Coordinate Metadata Markings -->
+  <g fill="#34d399" opacity="0.45" font-family="monospace" font-size="11">
+    <text x="80" y="105">PRECISION_SURFACE // GRID_ORIGIN [0,0]</text>
+    <text x="80" y="995">GOVERNANCE_LINTER // SHA-256_CRYPTOGRAPHIC_LOCK</text>
+    <text x="1560" y="105">WORKSPACE: NADI_NATURALS_MASTER</text>
+    <text x="1620" y="995">AXIS_BOUNDS: 1080x1080</text>
+  </g>
+
+  <!-- Floating Luminous Diagnostic Points -->
+  <g fill="#34d399" opacity="0.6">
+    <circle cx="320" cy="240" r="3.5" />
+    <circle cx="1100" cy="380" r="4" />
+    <circle cx="820" cy="720" r="3" />
+    <circle cx="1450" cy="280" r="3.5" />
+    <circle cx="1680" cy="820" r="4" />
   </g>
 </svg>
