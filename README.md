@@ -10,6 +10,11 @@
 </p>
 
 <p align="center">
+  <a href="https://web-eight-wheat-18.vercel.app"><img src="https://img.shields.io/badge/Vercel-Live_Production_Demo-black?logo=vercel&style=for-the-badge" alt="Vercel Live Demo" /></a>
+  <a href="https://github.com/Ranjeet7680/Enterprise-Pre-Publication-Brand-Governance-Platform/wiki"><img src="https://img.shields.io/badge/GitHub_Wiki-35+_Architecture_Diagrams-0078D7?logo=gitbook&style=for-the-badge" alt="GitHub Wiki" /></a>
+</p>
+
+<p align="center">
   <a href="#-architecture--service-boundaries"><img src="https://img.shields.io/badge/Architecture-Modular_Monolith-emerald.svg" alt="Architecture" /></a>
   <a href="#-hybrid-inspection-pipeline"><img src="https://img.shields.io/badge/Engine-Deterministic_+_RAG_Hybrid-blue.svg" alt="Hybrid Engine" /></a>
   <a href="#-review-state-machine--cryptographic-binding"><img src="https://img.shields.io/badge/Security-SHA--256_Approval_Lock-gold.svg" alt="SHA-256 Lock" /></a>
