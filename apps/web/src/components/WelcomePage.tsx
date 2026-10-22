@@ -32,7 +32,7 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
   return (
     <div className="min-h-screen bg-transparent text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
       {/* Hero Section */}
-      <section className="relative px-6 py-20 lg:py-28 overflow-hidden border-b border-[#182e22]/70">
+      <section className="relative px-4 sm:px-6 py-12 sm:py-20 lg:py-28 overflow-hidden border-b border-[#182e22]/70">
         {/* Generative AI Atmospheric Wallpaper Backdrop */}
         <div 
           className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-40 mix-blend-luminosity filter saturate-150 contrast-125"
@@ -51,11 +51,11 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
             <span>BLUEPRINT v1.2 SPECIFICATION CERTIFIED</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-100 max-w-4xl mx-auto leading-tight">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-100 max-w-4xl mx-auto leading-tight">
             Pre-Publication <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 bg-clip-text text-transparent">Brand Governance</span> for Enterprise Teams
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
+          <p className="text-sm sm:text-base lg:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
             Eliminate brand drift, unverified claims, and accessibility violations before content goes public.
             Evidence-grounded RAG, deterministic constraints, and immutable human approval state machines.
           </p>
@@ -104,7 +104,7 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
       </section>
 
       {/* Interactive Micro-Playground */}
-      <section className="px-6 py-16 bg-[#0a110d] border-b border-[#182e22]">
+      <section className="px-4 sm:px-6 py-12 sm:py-16 bg-[#0a110d] border-b border-[#182e22]">
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="text-center space-y-2">
             <h2 className="text-2xl font-bold text-slate-100">Live Policy Evaluation Sandbox</h2>
@@ -166,13 +166,13 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
       </section>
 
       {/* 4 Core Pillars Section */}
-      <section className="px-6 py-20 max-w-6xl mx-auto space-y-12">
+      <section className="px-4 sm:px-6 py-12 sm:py-20 max-w-6xl mx-auto space-y-12">
         <div className="text-center space-y-2">
-          <h2 className="text-3xl font-extrabold text-slate-100">Enterprise Architectural Pillars</h2>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-100">Enterprise Architectural Pillars</h2>
           <p className="text-xs text-slate-400 font-mono">IMPLEMENTATION SPECIFICATIONS IS 01–54</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           <div className="p-6 rounded-2xl bg-[#0b1410] border border-[#1c3627] space-y-3 hover:border-emerald-500/60 transition-colors">
             <div className="w-10 h-10 rounded-xl bg-emerald-950/70 border border-emerald-800 flex items-center justify-center text-emerald-400">
               <Shield className="w-5 h-5" />
@@ -236,7 +236,7 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
       </section>
 
       {/* 10 Scenarios Quick Launch Grid */}
-      <section className="px-6 py-16 bg-[#080d0a] border-t border-[#182e22]">
+      <section className="px-4 sm:px-6 py-12 sm:py-16 bg-[#080d0a] border-t border-[#182e22]">
         <div className="max-w-5xl mx-auto space-y-6">
           <div className="flex items-center justify-between">
             <div>
@@ -282,7 +282,7 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
       </section>
 
       {/* Footer */}
-      <footer className="mt-auto px-6 py-8 border-t border-[#182e22] bg-[#060a08] text-center text-xs text-slate-500">
+      <footer className="mt-auto px-4 sm:px-6 py-6 sm:py-8 border-t border-[#182e22] bg-[#060a08] text-center text-xs text-slate-500">
         <p>Inkloom AI Brand Governance Platform • Built for the 2026 Architecture Blueprint Challenge</p>
         <p className="text-[10px] text-slate-600 mt-1">Nadi Naturals is a demonstration FMCG brand. All sample data is labeled synthetic.</p>
       </footer>

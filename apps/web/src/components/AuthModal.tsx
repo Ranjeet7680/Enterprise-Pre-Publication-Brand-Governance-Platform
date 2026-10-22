@@ -53,8 +53,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onLoginSu
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-      <div className="bg-[#0b1410] border border-[#1e382a] rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-4">
+      <div className="bg-[#0b1410] border border-[#1e382a] rounded-2xl max-w-md w-full p-4 sm:p-6 space-y-4 sm:space-y-5 shadow-2xl relative max-h-[92vh] overflow-y-auto">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded"
@@ -201,7 +201,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onLoginSu
 
             <div className="p-3 rounded-xl bg-[#080d0a] border border-[#15281e] text-[11px] text-slate-400 space-y-1">
               <div className="text-slate-300 font-medium">Configured Identity Providers:</div>
-              <div className="flex space-x-2 pt-1">
+              <div className="flex flex-wrap gap-1.5 pt-1">
                 <span className="px-2 py-0.5 rounded bg-[#102419] text-emerald-300 border border-emerald-800 text-[10px]">Okta OIDC</span>
                 <span className="px-2 py-0.5 rounded bg-[#102419] text-emerald-300 border border-emerald-800 text-[10px]">Azure AD SAML 2.0</span>
                 <span className="px-2 py-0.5 rounded bg-[#102419] text-emerald-300 border border-emerald-800 text-[10px]">Google Workspace</span>

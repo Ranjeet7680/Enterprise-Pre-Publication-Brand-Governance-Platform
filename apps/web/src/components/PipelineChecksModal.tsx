@@ -18,22 +18,23 @@ export const PipelineChecksModal: React.FC<PipelineChecksModalProps> = ({
   const duration = reviewRun?.duration_ms || 14;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-[#0b1410] border border-[#1e3c2b] rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
+      <div className="bg-[#0b1410] border border-[#1e3c2b] rounded-2xl max-w-2xl w-full max-h-[88vh] flex flex-col shadow-2xl overflow-hidden">
         {/* Modal Header */}
-        <div className="p-5 border-b border-[#182e22] bg-[#0d1a13] flex items-center justify-between">
+        <div className="p-3.5 sm:p-5 border-b border-[#182e22] bg-[#0d1a13] flex items-center justify-between">
           <div className="flex items-center space-x-2.5">
-            <div className="w-8 h-8 rounded-lg bg-emerald-950/80 border border-emerald-500/60 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-emerald-950/80 border border-emerald-500/60 flex items-center justify-center shrink-0">
               <Cpu className="w-4 h-4 text-emerald-400" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-slate-100 flex items-center space-x-2">
-                <span>9-Stage Inspection Dependency Pipeline</span>
-                <span className="text-[10px] font-mono text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">
-                  {checks.length} Checks Executed
+              <h3 className="text-xs sm:text-sm font-bold text-slate-100 flex items-center space-x-2">
+                <span className="hidden sm:inline">9-Stage Inspection Dependency Pipeline</span>
+                <span className="sm:hidden">9-Stage Pipeline</span>
+                <span className="text-[10px] font-mono text-emerald-300 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800">
+                  {checks.length} Checks
                 </span>
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-[10px] sm:text-xs text-slate-400 line-clamp-1 sm:line-clamp-none">
                 Hybrid evaluation tree combining deterministic code and bounded evidence RAG.
               </p>
             </div>
@@ -41,14 +42,14 @@ export const PipelineChecksModal: React.FC<PipelineChecksModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-[#14261d] transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-[#14261d] transition-colors shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Pipeline Summary Bar */}
-        <div className="px-5 py-3 bg-[#08110c] border-b border-[#14261d] flex items-center justify-between text-xs text-slate-400 font-mono">
+        <div className="px-3.5 sm:px-5 py-2.5 sm:py-3 bg-[#08110c] border-b border-[#14261d] flex flex-wrap items-center justify-between gap-1 text-[11px] sm:text-xs text-slate-400 font-mono">
           <span className="flex items-center space-x-1">
             <Clock className="w-3.5 h-3.5 text-emerald-400" />
             <span>End-to-End Latency: <strong className="text-emerald-300">{duration}ms</strong></span>
@@ -105,13 +106,13 @@ export const PipelineChecksModal: React.FC<PipelineChecksModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 border-t border-[#182e22] bg-[#0a130e] flex items-center justify-between text-xs">
-          <span className="text-slate-400">
+        <div className="p-3.5 sm:p-4 border-t border-[#182e22] bg-[#0a130e] flex flex-col sm:flex-row gap-2.5 sm:items-center justify-between text-xs">
+          <span className="text-[11px] sm:text-xs text-slate-400">
             All checks run deterministically on the edge or via bounded semantic verification.
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow transition-all"
+            className="w-full sm:w-auto px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow transition-all text-center"
           >
             Close
           </button>

@@ -111,8 +111,8 @@ export const VoiceDictationModal: React.FC<VoiceDictationModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-      <div className="bg-[#0b1410] border border-[#1e382a] rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-4">
+      <div className="bg-[#0b1410] border border-[#1e382a] rounded-2xl max-w-lg w-full p-4 sm:p-6 space-y-4 sm:space-y-5 shadow-2xl max-h-[92vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[#1b2f23] pb-3">
           <div className="flex items-center space-x-2 text-emerald-400">

@@ -46,8 +46,8 @@ export const SourceUploadModal: React.FC<SourceUploadModalProps> = ({ isOpen, on
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-      <div className="bg-[#0b1410] border border-[#1e382a] rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-4">
+      <div className="bg-[#0b1410] border border-[#1e382a] rounded-2xl max-w-lg w-full p-4 sm:p-6 space-y-4 shadow-2xl max-h-[92vh] overflow-y-auto">
         <div className="flex items-center justify-between border-b border-[#1b2f23] pb-3">
           <div className="flex items-center space-x-2 text-emerald-400">
             <UploadCloud className="w-5 h-5" />

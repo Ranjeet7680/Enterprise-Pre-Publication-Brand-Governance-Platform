@@ -153,20 +153,20 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* 1. SURFACE HEADER & CONTROLS */}
-      <div className="p-3.5 border-b border-[#182e22]/80 bg-[#0a130e]/85 backdrop-blur-md flex flex-wrap items-center justify-between gap-2">
+      <div className="p-3 sm:p-3.5 border-b border-[#182e22]/80 bg-[#0a130e]/85 backdrop-blur-md flex flex-wrap items-center justify-between gap-2">
         {/* Left: Title & Mode Switchers */}
-        <div className="flex items-center space-x-2">
-          <div className="flex items-center space-x-1.5 text-xs font-semibold text-slate-200 mr-2">
-            <FileText className="w-4 h-4 text-emerald-400" />
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center space-x-1.5 text-xs font-semibold text-slate-200 mr-1 sm:mr-2">
+            <FileText className="w-4 h-4 text-emerald-400 shrink-0" />
             <span className="hidden sm:inline">Pre-Publication Working Surface</span>
-            <span className="sm:hidden">Working Surface</span>
+            <span className="sm:hidden font-bold">Surface</span>
           </div>
 
           {/* Mode Switcher Pills */}
           <div className="flex items-center bg-[#070c09]/90 border border-[#1b3427] rounded-lg p-0.5">
             <button
               onClick={() => setViewMode('linter')}
-              className={`flex items-center space-x-1 text-xs px-2.5 py-1 rounded-md transition-colors ${
+              className={`flex items-center space-x-1 text-xs px-2 sm:px-2.5 py-1 rounded-md transition-colors ${
                 viewMode === 'linter'
                   ? 'bg-emerald-950 text-emerald-300 border border-emerald-600 font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
@@ -174,7 +174,8 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
               title="Interactive Visual Linter with inline highlighted spans"
             >
               <Eye className="w-3.5 h-3.5" />
-              <span>Visual Linter</span>
+              <span className="hidden sm:inline">Visual Linter</span>
+              <span className="sm:hidden">Linter</span>
               {textFindings.length > 0 && (
                 <span className="ml-1 text-[10px] bg-rose-900/90 text-rose-200 px-1 rounded-full font-mono">
                   {textFindings.length}
@@ -184,7 +185,7 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
 
             <button
               onClick={() => setViewMode('raw')}
-              className={`flex items-center space-x-1 text-xs px-2.5 py-1 rounded-md transition-colors ${
+              className={`flex items-center space-x-1 text-xs px-2 sm:px-2.5 py-1 rounded-md transition-colors ${
                 viewMode === 'raw'
                   ? 'bg-emerald-950 text-emerald-300 border border-emerald-600 font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
@@ -192,12 +193,13 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
               title="Raw plain text editor"
             >
               <Edit3 className="w-3.5 h-3.5" />
-              <span>Raw Editor</span>
+              <span className="hidden sm:inline">Raw Editor</span>
+              <span className="sm:hidden">Raw</span>
             </button>
 
             <button
               onClick={() => setViewMode('diff')}
-              className={`flex items-center space-x-1 text-xs px-2.5 py-1 rounded-md transition-colors ${
+              className={`flex items-center space-x-1 text-xs px-2 sm:px-2.5 py-1 rounded-md transition-colors ${
                 viewMode === 'diff'
                   ? 'bg-emerald-950 text-emerald-300 border border-emerald-600 font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
@@ -211,28 +213,28 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
         </div>
 
         {/* Right: Actions (Auto-Fix, Presets, Dictate, Run) */}
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
           {/* Quick Demo Scenarios Selector */}
           <select
             onChange={(e) => {
               if (e.target.value) onLoadScenario(e.target.value);
             }}
             defaultValue=""
-            className="bg-[#101f17] border border-[#213d2d] text-xs text-slate-300 rounded-lg px-2 py-1.5 focus:outline-none focus:border-emerald-500"
+            className="bg-[#101f17] border border-[#213d2d] text-xs text-slate-300 rounded-lg px-2 py-1.5 focus:outline-none focus:border-emerald-500 max-w-[125px] sm:max-w-none truncate"
             title="Load demo scenario"
           >
-            <option value="" disabled>Load Demo Scenario...</option>
-            <option value="risky">🚨 Risky Launch (5 Blockers, 2 Warnings)</option>
-            <option value="clean">✅ 100% Compliant (Ready to Approve)</option>
+            <option value="" disabled>Load Demo...</option>
+            <option value="risky">🚨 Risky Launch (5 Blockers)</option>
+            <option value="clean">✅ 100% Compliant (Clean)</option>
             <option value="injection">🛡️ Prompt Injection Attack</option>
-            <option value="hinglish">🇮🇳 Hinglish Nuance & Code-Switching</option>
+            <option value="hinglish">🇮🇳 Hinglish Nuance</option>
           </select>
 
           {/* 1-Click Auto-Remediate All Fixable Spans */}
           {autoFixableCount > 0 && (
             <button
               onClick={onAutoFixAll}
-              className="flex items-center space-x-1.5 text-xs font-semibold bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white px-3 py-1.5 rounded-lg shadow-lg shadow-emerald-950 transition-all animate-pulse"
+              className="flex items-center space-x-1.5 text-xs font-semibold bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white px-2.5 sm:px-3 py-1.5 rounded-lg shadow-lg shadow-emerald-950 transition-all animate-pulse"
               title="Apply all approved brand corrections in one click"
             >
               <Zap className="w-3.5 h-3.5 fill-current" />
@@ -243,7 +245,7 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
           {/* Voice Dictation (IS 12) */}
           <button
             onClick={onOpenVoiceModal}
-            className="flex items-center space-x-1 text-xs text-emerald-300 bg-emerald-950/50 border border-emerald-800/70 px-2.5 py-1.5 rounded-lg hover:bg-emerald-900/60 transition-colors shadow"
+            className="flex items-center space-x-1 text-xs text-emerald-300 bg-emerald-950/50 border border-emerald-800/70 px-2 sm:px-2.5 py-1.5 rounded-lg hover:bg-emerald-900/60 transition-colors shadow"
             title="Dictate content in Hindi or English (Voice Safety IS 38)"
           >
             <Mic className="w-3.5 h-3.5 text-emerald-400" />
@@ -254,7 +256,7 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
           <button
             onClick={() => onTriggerAudit(currentText)}
             disabled={isLoading}
-            className="flex items-center space-x-1.5 text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-1.5 rounded-lg shadow-lg shadow-emerald-950 transition-all disabled:opacity-50"
+            className="flex items-center space-x-1.5 text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white px-3 sm:px-3.5 py-1.5 rounded-lg shadow-lg shadow-emerald-950 transition-all disabled:opacity-50"
           >
             {isLoading ? (
               <>
@@ -349,7 +351,7 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
 
         {/* Floating Quick Action Card when a finding is selected */}
         {activeFocusFinding && activeFocusFinding.text_span && (
-          <div className="p-3 rounded-xl bg-gradient-to-r from-[#121f18] to-[#0c1712] border border-emerald-700/60 shadow-xl flex items-center justify-between animate-fadeIn">
+          <div className="p-3 rounded-xl bg-gradient-to-r from-[#121f18] to-[#0c1712] border border-emerald-700/60 shadow-xl flex flex-col sm:flex-row gap-2 sm:items-center justify-between animate-fadeIn">
             <div className="space-y-0.5 max-w-lg">
               <div className="flex items-center space-x-2">
                 <span className={`text-[10px] font-mono uppercase px-1.5 py-0.5 rounded font-bold ${
@@ -372,7 +374,7 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
               )}
             </div>
 
-            <div className="flex items-center space-x-2 shrink-0">
+            <div className="flex items-center space-x-2 shrink-0 self-end sm:self-auto">
               {activeFocusFinding.suggested_replacement && (
                 <button
                   onClick={() => onAcceptPatch(activeFocusFinding)}
@@ -396,17 +398,18 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
         <div className="bg-[#08120d]/85 backdrop-blur-md border border-[#182e22]/80 rounded-xl overflow-hidden shadow-lg">
           {/* Deck Tab Bar */}
           <div className="flex items-center justify-between border-b border-[#182e22]/80 bg-[#0a150f]/90 px-3 pt-2">
-            <div className="flex space-x-1">
+            <div className="flex space-x-1 overflow-x-auto no-scrollbar py-0.5">
               <button
                 onClick={() => setActiveBottomTab('canvas')}
-                className={`flex items-center space-x-1.5 px-3 py-1.5 text-xs font-semibold rounded-t-lg transition-colors border-t border-x ${
+                className={`flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-t-lg transition-colors border-t border-x whitespace-nowrap shrink-0 ${
                   activeBottomTab === 'canvas'
                     ? 'bg-[#08120d] text-emerald-400 border-[#182e22] -mb-px'
                     : 'text-slate-400 hover:text-slate-200 border-transparent'
                 }`}
               >
                 <Layers className="w-3.5 h-3.5" />
-                <span>Visual Asset &amp; Logo Spec</span>
+                <span className="hidden sm:inline">Visual Asset &amp; Logo Spec</span>
+                <span className="sm:hidden">Visual Spec</span>
                 {(reviewRun?.findings?.filter((f: any) => f.category === 'visual_identity' || f.category === 'accessibility').length || 0) > 0 && (
                   <span className="ml-1 text-[9px] bg-rose-950 text-rose-300 border border-rose-800 px-1 rounded-full font-mono">
                     {reviewRun?.findings?.filter((f: any) => f.category === 'visual_identity' || f.category === 'accessibility').length}
@@ -416,26 +419,28 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
 
               <button
                 onClick={() => setActiveBottomTab('instagram')}
-                className={`flex items-center space-x-1.5 px-3 py-1.5 text-xs font-semibold rounded-t-lg transition-colors border-t border-x ${
+                className={`flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-t-lg transition-colors border-t border-x whitespace-nowrap shrink-0 ${
                   activeBottomTab === 'instagram'
                     ? 'bg-[#08120d] text-emerald-400 border-[#182e22] -mb-px'
                     : 'text-slate-400 hover:text-slate-200 border-transparent'
                 }`}
               >
                 <Smartphone className="w-3.5 h-3.5" />
-                <span>Live Feed Preview (Instagram)</span>
+                <span className="hidden sm:inline">Live Feed Preview (Instagram)</span>
+                <span className="sm:hidden">Instagram</span>
               </button>
 
               <button
                 onClick={() => setActiveBottomTab('health')}
-                className={`flex items-center space-x-1.5 px-3 py-1.5 text-xs font-semibold rounded-t-lg transition-colors border-t border-x ${
+                className={`flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-t-lg transition-colors border-t border-x whitespace-nowrap shrink-0 ${
                   activeBottomTab === 'health'
                     ? 'bg-[#08120d] text-emerald-400 border-[#182e22] -mb-px'
                     : 'text-slate-400 hover:text-slate-200 border-transparent'
                 }`}
               >
                 <BarChart2 className="w-3.5 h-3.5" />
-                <span>Compliance Radar</span>
+                <span className="hidden sm:inline">Compliance Radar</span>
+                <span className="sm:hidden">Radar</span>
                 <span className={`ml-1 text-[9px] font-mono px-1 rounded-full ${
                   healthScore === 100 ? 'bg-emerald-950 text-emerald-300' : 'bg-rose-950 text-rose-300'
                 }`}>
@@ -444,7 +449,7 @@ export const InteractiveWorkingSurface: React.FC<InteractiveWorkingSurfaceProps>
               </button>
             </div>
 
-            <div className="text-[10px] font-mono text-slate-500 pb-1.5">
+            <div className="hidden lg:block text-[10px] font-mono text-slate-500 pb-1.5 shrink-0">
               Omnichannel Publishing Surface
             </div>
           </div>

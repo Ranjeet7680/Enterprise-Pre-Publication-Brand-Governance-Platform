@@ -23,8 +23,8 @@ export const ConflictResolverWizard: React.FC<ConflictResolverWizardProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-      <div className="bg-[#0b1410] border border-amber-600/50 rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-4">
+      <div className="bg-[#0b1410] border border-amber-600/50 rounded-2xl max-w-xl w-full p-4 sm:p-6 space-y-4 shadow-2xl max-h-[92vh] overflow-y-auto">
         <div className="flex items-center justify-between border-b border-[#1b2f23] pb-3">
           <div className="flex items-center space-x-2 text-amber-400">
             <AlertTriangle className="w-5 h-5" />
@@ -41,7 +41,7 @@ export const ConflictResolverWizard: React.FC<ConflictResolverWizardProps> = ({
         </p>
 
         {/* Comparison Cards */}
-        <div className="grid grid-cols-2 gap-3 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
           <div
             onClick={() => setSelectedDoc('spec')}
             className={`p-4 rounded-xl border cursor-pointer transition-all ${

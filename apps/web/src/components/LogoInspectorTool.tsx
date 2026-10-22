@@ -38,15 +38,15 @@ export const LogoInspectorTool: React.FC = () => {
   const isDistorted = aspectRatio !== null && Math.abs(aspectRatio - masterRatio) > tolerance;
 
   return (
-    <div className="p-6 rounded-2xl bg-[#0b1410] border border-[#1b3426] space-y-4">
-      <div className="flex items-center justify-between">
+    <div className="p-4 sm:p-6 rounded-2xl bg-[#0b1410] border border-[#1b3426] space-y-4">
+      <div className="flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
         <div>
           <h3 className="font-bold text-slate-100 text-sm">Interactive Logo Distortion Analyzer (IS 10)</h3>
           <p className="text-xs text-slate-400">Upload or drop an asset to verify compliance against the master 3.50:1 logo specification.</p>
         </div>
         <button
           onClick={() => fileInputRef.current?.click()}
-          className="px-3.5 py-1.5 bg-[#12241a] hover:bg-[#1a3527] border border-[#234533] text-emerald-300 text-xs font-semibold rounded-lg flex items-center space-x-1.5 transition-colors"
+          className="self-start sm:self-auto px-3.5 py-1.5 bg-[#12241a] hover:bg-[#1a3527] border border-[#234533] text-emerald-300 text-xs font-semibold rounded-lg flex items-center space-x-1.5 transition-colors"
         >
           <UploadCloud className="w-3.5 h-3.5" />
           <span>Upload Image</span>
@@ -74,7 +74,7 @@ export const LogoInspectorTool: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 text-xs font-mono">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 text-xs font-mono">
             <div className="p-3 bg-[#070d0a] rounded-xl border border-[#162a1e]">
               <div className="text-[10px] text-slate-400 uppercase">Master Spec</div>
               <div className="text-base font-bold text-emerald-400 mt-1">3.50 : 1</div>

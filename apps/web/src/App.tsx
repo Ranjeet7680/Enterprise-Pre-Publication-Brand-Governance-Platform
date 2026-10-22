@@ -120,6 +120,7 @@ export default function App() {
   const [showChecksModal, setShowChecksModal] = useState(false);
   const [findingsDensity, setFindingsDensity] = useState<'compact' | 'detailed'>('detailed');
   const [findingsSearch, setFindingsSearch] = useState('');
+  const [mobileStudioTab, setMobileStudioTab] = useState<'editor' | 'findings'>('editor');
 
   // Modals & Extra Views
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -728,30 +729,30 @@ export default function App() {
       )}
 
       {/* TOP HEADER */}
-      <header className="h-16 border-b border-[#182e22] bg-[#0c1611] px-6 flex items-center justify-between sticky top-0 z-40">
-        <div className="flex items-center space-x-4">
+      <header className="h-16 border-b border-[#182e22] bg-[#0c1611] px-3 sm:px-6 flex items-center justify-between sticky top-0 z-40">
+        <div className="flex items-center space-x-2.5 sm:space-x-4 min-w-0">
           <div
             onClick={() => setActiveTab('welcome')}
-            className="flex items-center space-x-2 cursor-pointer group"
+            className="flex items-center space-x-2 cursor-pointer group shrink-0"
           >
-            <div className="w-9 h-9 rounded-xl bg-emerald-600/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
-              <Shield className="w-5 h-5" />
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-600/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+              <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <div className="flex items-center space-x-2">
-                <span className="font-extrabold text-lg tracking-wider text-slate-100">INKLOOM AI</span>
-                <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">
-                  Blueprint v1.2
+              <div className="flex items-center space-x-1.5 sm:space-x-2">
+                <span className="font-extrabold text-base sm:text-lg tracking-wider text-slate-100">INKLOOM</span>
+                <span className="text-[9px] sm:text-[10px] font-mono uppercase px-1.5 sm:px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">
+                  v1.2
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400">Enterprise Brand Governance &amp; Explainable AI</p>
+              <p className="hidden sm:block text-[11px] text-slate-400 truncate">Enterprise Brand Governance &amp; Explainable AI</p>
             </div>
           </div>
 
-          <div className="h-6 w-px bg-slate-800" />
+          <div className="hidden sm:block h-6 w-px bg-slate-800" />
 
           {/* Workspace Pill */}
-          <div className="hidden md:flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-[#112219] border border-[#213f2f] text-xs text-slate-300">
+          <div className="hidden md:flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-[#112219] border border-[#213f2f] text-xs text-slate-300 shrink-0">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="font-medium text-emerald-300">Nadi Naturals</span>
             <span className="text-slate-500">|</span>
@@ -760,41 +761,41 @@ export default function App() {
         </div>
 
         {/* Controls: Persona Switcher, Blueprint Scenarios, Auth */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
           {/* Blueprint Scenarios Dropdown */}
           <div className="flex items-center space-x-2">
             <span className="text-xs text-slate-400 hidden xl:inline">Test Scenario:</span>
             <select
-              className="bg-[#101f17] border border-[#213d2d] text-emerald-300 text-xs rounded-lg px-3 py-1.5 focus:border-emerald-500 focus:outline-none cursor-pointer"
+              className="bg-[#101f17] border border-[#213d2d] text-emerald-300 text-xs rounded-lg px-2 sm:px-3 py-1.5 focus:border-emerald-500 focus:outline-none cursor-pointer max-w-[125px] sm:max-w-xs md:max-w-none truncate"
               onChange={(e) => {
                 handleLoadScenario(e.target.value);
                 if (activeTab === 'welcome') setActiveTab('studio');
               }}
               defaultValue=""
             >
-              <option value="" disabled>Select Blueprint Scenario (1-10)...</option>
-              <option value="terminology_conflict">1. Terminology Conflict (Legacy Product Name)</option>
-              <option value="unsupported_claim">2. Unsupported Claim ("Most Trusted in India")</option>
-              <option value="expired_offer">3. Expired Offer (Festive discount past Oct 15)</option>
-              <option value="tone_mismatch">4. Tone Mismatch (Sarcastic &amp; Pushy Copy)</option>
-              <option value="logo_misuse">5. Logo Misuse (Stretched 1.8:1 Aspect Ratio)</option>
-              <option value="accessibility">6. Accessibility &amp; Low Contrast (#B0A090)</option>
-              <option value="code_switching">7. Hinglish Nuance &amp; Code-Switching</option>
-              <option value="source_conflict">8. Source Conflict (100% vs 98.5% Organic)</option>
-              <option value="voice_dictation">9. Voice Dictation &amp; Audio Review</option>
-              <option value="prompt_injection">10. Security: Adversarial Prompt Injection</option>
+              <option value="" disabled>Scenario (1-10)...</option>
+              <option value="terminology_conflict">1. Terminology Conflict (Legacy Name)</option>
+              <option value="unsupported_claim">2. Unsupported Claim ("Most Trusted")</option>
+              <option value="expired_offer">3. Expired Offer (Festive discount)</option>
+              <option value="tone_mismatch">4. Tone Mismatch (Sarcastic Copy)</option>
+              <option value="logo_misuse">5. Logo Misuse (Stretched 1.8:1)</option>
+              <option value="accessibility">6. Accessibility &amp; Low Contrast</option>
+              <option value="code_switching">7. Hinglish Nuance &amp; Codeswitch</option>
+              <option value="source_conflict">8. Source Conflict (100% vs 98.5%)</option>
+              <option value="voice_dictation">9. Voice Dictation &amp; Audio</option>
+              <option value="prompt_injection">10. Security: Adversarial Injection</option>
             </select>
           </div>
 
           {/* User Persona Button & Sign-In */}
           <button
             onClick={() => setShowAuthModal(true)}
-            className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-[#112219] border border-[#213f2f] hover:border-emerald-500 text-xs text-slate-200 transition-colors"
+            className="flex items-center space-x-1.5 sm:space-x-2 px-2 sm:px-3 py-1.5 rounded-lg bg-[#112219] border border-[#213f2f] hover:border-emerald-500 text-xs text-slate-200 transition-colors"
             title="Switch User Persona or Authenticate SSO"
           >
-            <UserCheck className="w-4 h-4 text-emerald-400" />
+            <UserCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
             <span className="font-medium hidden sm:inline">{currentUser.name}</span>
-            <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+            <span className="text-[9px] sm:text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
               {currentUser.role}
             </span>
           </button>
@@ -802,7 +803,7 @@ export default function App() {
       </header>
 
       {/* NAVIGATION BAR */}
-      <nav className="border-b border-[#182e22] bg-[#0c1611] px-6 flex items-center justify-between overflow-x-auto">
+      <nav className="border-b border-[#182e22] bg-[#0c1611] px-3 sm:px-6 flex items-center justify-between overflow-x-auto no-scrollbar whitespace-nowrap">
         <div className="flex space-x-1 shrink-0">
           {[
             { id: 'welcome', label: 'Welcome & Tour', icon: Home },
@@ -820,20 +821,20 @@ export default function App() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center space-x-2 py-3 px-4 text-xs font-semibold border-b-2 transition-all ${
+                className={`flex items-center space-x-1.5 sm:space-x-2 py-2.5 sm:py-3 px-2.5 sm:px-4 text-xs font-semibold border-b-2 transition-all shrink-0 ${
                   isActive
                     ? 'border-emerald-500 text-emerald-400 bg-emerald-950/30'
                     : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-700'
                 }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span>{tab.label}</span>
               </button>
             );
           })}
         </div>
 
-        <div className="flex items-center space-x-2 shrink-0">
+        <div className="flex items-center space-x-2 shrink-0 ml-3">
           {/* Active Background Theme Indicator */}
           <div
             className="hidden lg:flex items-center space-x-2 text-xs font-mono bg-[#0c1611]/90 px-3 py-1.5 rounded-lg border border-emerald-800/60 shadow-sm"
@@ -846,7 +847,7 @@ export default function App() {
 
           <button
             onClick={() => setShowUploadModal(true)}
-            className="text-xs text-slate-300 hover:text-emerald-300 flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-[#213f2f] bg-[#0e1d15] transition-colors"
+            className="text-xs text-slate-300 hover:text-emerald-300 flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-[#213f2f] bg-[#0e1d15] transition-colors"
           >
             <UploadCloud className="w-3.5 h-3.5 text-emerald-400" />
             <span className="hidden sm:inline">Ingest Source</span>
@@ -854,7 +855,7 @@ export default function App() {
 
           <button
             onClick={() => handleLoadScenario('terminology_conflict')}
-            className="text-xs text-slate-400 hover:text-slate-200 flex items-center space-x-1 px-3 py-1.5 rounded-lg border border-[#213f2f] bg-[#0e1d15]"
+            className="text-xs text-slate-400 hover:text-slate-200 flex items-center space-x-1 px-2.5 sm:px-3 py-1.5 rounded-lg border border-[#213f2f] bg-[#0e1d15]"
             title="Reset database to fresh default state"
           >
             <RefreshCw className="w-3.5 h-3.5" />
@@ -878,17 +879,17 @@ export default function App() {
         {activeTab === 'studio' && (
           <div className="h-full flex flex-col">
             {/* Top Studio Bar */}
-            <div className="px-6 py-3 border-b border-[#182e22]/80 bg-[#0a130e]/85 backdrop-blur-md flex items-center justify-between">
-              <div className="flex items-center space-x-3 flex-1 mr-4">
+            <div className="px-3 sm:px-6 py-2 sm:py-3 border-b border-[#182e22]/80 bg-[#0a130e]/85 backdrop-blur-md flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-[180px]">
                 <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="bg-transparent font-semibold text-slate-100 text-sm border-b border-transparent hover:border-slate-700 focus:border-emerald-500 focus:outline-none px-1 min-w-[320px] max-w-xl w-auto truncate"
+                  className="bg-transparent font-semibold text-slate-100 text-xs sm:text-sm border-b border-transparent hover:border-slate-700 focus:border-emerald-500 focus:outline-none px-1 w-full max-w-sm sm:max-w-xl truncate"
                   title="Click to edit campaign asset title"
                 />
                 <span className="text-xs text-slate-500">|</span>
-                <span className="text-xs text-slate-400 font-mono">v{contentItem?.current_version || 1}</span>
+                <span className="text-xs text-slate-400 font-mono shrink-0">v{contentItem?.current_version || 1}</span>
                 <span
                   onClick={() => {
                     if (contentItem?.current_hash) {
@@ -896,18 +897,18 @@ export default function App() {
                       showToast("SHA-256 hash copied to clipboard", "info");
                     }
                   }}
-                  className="text-[10px] text-slate-400 font-mono px-2 py-0.5 rounded bg-[#102218] border border-[#213f2f] cursor-pointer hover:border-emerald-500 transition-colors"
+                  className="hidden md:inline-block text-[10px] text-slate-400 font-mono px-2 py-0.5 rounded bg-[#102218] border border-[#213f2f] cursor-pointer hover:border-emerald-500 transition-colors shrink-0"
                   title="Click to copy full SHA-256 cryptographic hash"
                 >
                   SHA-256: {contentItem?.current_hash?.substring(0, 10)}...
                 </span>
               </div>
 
-              <div className="flex items-center space-x-2.5 shrink-0">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2.5 shrink-0">
                 {/* Comments Drawer Button */}
                 <button
                   onClick={() => setShowCommentDrawer(true)}
-                  className="px-2.5 py-1 rounded-lg text-xs font-medium border bg-[#101f17] text-slate-300 border-[#213d2d] hover:border-emerald-500 flex items-center space-x-1.5 transition-colors"
+                  className="px-2 sm:px-2.5 py-1 rounded-lg text-xs font-medium border bg-[#101f17] text-slate-300 border-[#213d2d] hover:border-emerald-500 flex items-center space-x-1.5 transition-colors"
                   title="Open Reviewer Comment Threads"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
@@ -917,7 +918,7 @@ export default function App() {
                 {/* Diff View Toggle */}
                 <button
                   onClick={() => setShowDiffView(!showDiffView)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-medium border flex items-center space-x-1 transition-colors ${
+                  className={`px-2 sm:px-2.5 py-1 rounded-lg text-xs font-medium border flex items-center space-x-1 transition-colors ${
                     showDiffView ? 'bg-emerald-950 text-emerald-300 border-emerald-500' : 'bg-[#101f17] text-slate-400 border-[#213d2d]'
                   }`}
                   title="Toggle Visual Diff against original version"
@@ -930,31 +931,31 @@ export default function App() {
                 <select
                   value={channel}
                   onChange={(e) => setChannel(e.target.value)}
-                  className="bg-[#101f17] border border-[#213d2d] text-xs text-slate-300 rounded px-2.5 py-1 focus:outline-none"
+                  className="bg-[#101f17] border border-[#213d2d] text-xs text-slate-300 rounded px-2 py-1 focus:outline-none max-w-[110px] sm:max-w-none truncate"
                 >
-                  <option value="social">Channel: Social Media</option>
-                  <option value="web">Channel: Web Landing Page</option>
-                  <option value="email">Channel: Email Campaign</option>
-                  <option value="support">Channel: Support Article</option>
-                  <option value="ad">Channel: Digital Ad</option>
-                  <option value="print">Channel: Packaging / Print</option>
+                  <option value="social">Social Media</option>
+                  <option value="web">Landing Page</option>
+                  <option value="email">Email</option>
+                  <option value="support">Help Desk</option>
+                  <option value="ad">Digital Ad</option>
+                  <option value="print">Packaging</option>
                 </select>
 
                 {/* Locale Selector */}
                 <select
                   value={locale}
                   onChange={(e) => setLocale(e.target.value)}
-                  className="bg-[#101f17] border border-[#213d2d] text-xs text-slate-300 rounded px-2.5 py-1 focus:outline-none"
+                  className="bg-[#101f17] border border-[#213d2d] text-xs text-slate-300 rounded px-2 py-1 focus:outline-none max-w-[95px] sm:max-w-none truncate"
                 >
-                  <option value="en-IN">Locale: English (India)</option>
-                  <option value="hi-IN">Locale: Hindi (हिन्दी)</option>
-                  <option value="ta-IN">Locale: Tamil (தமிழ்)</option>
-                  <option value="te-IN">Locale: Telugu (తెలుగు)</option>
-                  <option value="bn-IN">Locale: Bengali (বাংলা)</option>
+                  <option value="en-IN">EN (IN)</option>
+                  <option value="hi-IN">HI (हिन्दी)</option>
+                  <option value="ta-IN">TA (தமிழ்)</option>
+                  <option value="te-IN">TE (తెలుగు)</option>
+                  <option value="bn-IN">BN (বাংলা)</option>
                 </select>
 
                 {/* Status Indicator */}
-                <div className={`px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border ${
+                <div className={`px-2 sm:px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold uppercase tracking-wider border shrink-0 ${
                   contentItem?.status === 'approved' ? 'bg-emerald-950/70 text-emerald-400 border-emerald-500/60' :
                   contentItem?.status === 'changes_requested' ? 'bg-amber-950/70 text-amber-400 border-amber-500/60' :
                   contentItem?.status === 'rejected' ? 'bg-rose-950/70 text-rose-400 border-rose-500/60' :
@@ -965,10 +966,48 @@ export default function App() {
               </div>
             </div>
 
+            {/* Mobile Viewport Segmented Switcher (Visible only on < lg screens) */}
+            <div className="lg:hidden px-3 py-2 bg-[#09130e] border-b border-[#182e22] flex items-center justify-between shrink-0">
+              <div className="grid grid-cols-2 gap-1.5 w-full bg-[#050a07] p-1 rounded-xl border border-[#172c20]">
+                <button
+                  onClick={() => setMobileStudioTab('editor')}
+                  className={`flex items-center justify-center space-x-2 py-2 px-3 rounded-lg text-xs font-semibold transition-all ${
+                    mobileStudioTab === 'editor'
+                      ? 'bg-emerald-600 text-white shadow-md shadow-emerald-950 font-bold'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Working Surface</span>
+                </button>
+
+                <button
+                  onClick={() => setMobileStudioTab('findings')}
+                  className={`flex items-center justify-center space-x-2 py-2 px-3 rounded-lg text-xs font-semibold transition-all ${
+                    mobileStudioTab === 'findings'
+                      ? 'bg-emerald-600 text-white shadow-md shadow-emerald-950 font-bold'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  <Shield className="w-3.5 h-3.5" />
+                  <span>Findings Stream</span>
+                  {(reviewRun?.total_findings !== undefined ? reviewRun.total_findings : filteredFindings.length) > 0 && (
+                    <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full font-bold ml-1 ${
+                      reviewRun?.blockers_count > 0 ? 'bg-rose-950 text-rose-300 border border-rose-700' : 'bg-[#102217] text-emerald-300'
+                    }`}>
+                      {reviewRun?.total_findings !== undefined ? reviewRun.total_findings : filteredFindings.length}
+                    </span>
+                  )}
+                </button>
+              </div>
+            </div>
+
             {/* Studio Main Split (Interactive Surface on Left, Findings on Right) */}
             <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
               {/* LEFT COLUMN: INTERACTIVE WORKING SURFACE & PREVIEW (7 Cols) */}
-              <div className="lg:col-span-7 border-r border-[#182e22]/80 flex flex-col h-full bg-[#070c09]/80 backdrop-blur-sm overflow-hidden">
+              <div className={`lg:col-span-7 border-r border-[#182e22]/80 flex-col h-full bg-[#070c09]/80 backdrop-blur-sm overflow-hidden ${
+                mobileStudioTab === 'editor' ? 'flex' : 'hidden lg:flex'
+              }`}>
                 <div className="flex-1 overflow-hidden">
                   <InteractiveWorkingSurface
                     currentText={currentText}
@@ -991,7 +1030,7 @@ export default function App() {
                 </div>
 
                 {/* BOTTOM WORKFLOW ACTIONS BAR */}
-                <div className="p-3.5 border-t border-[#182e22]/80 bg-[#0a130e]/85 backdrop-blur-md flex items-center justify-between shrink-0">
+                <div className="p-3 sm:p-3.5 border-t border-[#182e22]/80 bg-[#0a130e]/85 backdrop-blur-md flex flex-col sm:flex-row gap-2.5 sm:items-center justify-between shrink-0">
                   <div className="flex items-center space-x-2">
                     <span className="text-xs text-slate-400">Review Decision:</span>
                     {contentItem?.approved_version ? (
@@ -1008,10 +1047,10 @@ export default function App() {
                     )}
                   </div>
 
-                  <div className="flex items-center space-x-2.5">
+                  <div className="flex flex-wrap items-center gap-2">
                     <button
                       onClick={() => handleTransition('changes_requested')}
-                      className="px-3.5 py-1.5 rounded-lg text-xs font-medium text-amber-400 border border-amber-800/70 hover:bg-amber-950/50 transition-colors"
+                      className="px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-medium text-amber-400 border border-amber-800/70 hover:bg-amber-950/50 transition-colors"
                     >
                       Request Changes
                     </button>
@@ -1019,7 +1058,7 @@ export default function App() {
                     <button
                       onClick={() => handleTransition('approved')}
                       disabled={reviewRun?.blockers_count > 0}
-                      className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1.5"
+                      className="px-3.5 sm:px-4 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1.5"
                       title={reviewRun?.blockers_count > 0 ? "Cannot approve: active critical blockers must be resolved or overridden." : "Sign off on this immutable version"}
                     >
                       <Lock className="w-3.5 h-3.5" />
@@ -1028,7 +1067,7 @@ export default function App() {
 
                     <button
                       onClick={handleExportClick}
-                      className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 border border-[#213f2f] hover:bg-[#112219] transition-colors flex items-center space-x-1"
+                      className="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 border border-[#213f2f] hover:bg-[#112219] transition-colors flex items-center space-x-1"
                     >
                       <Download className="w-3.5 h-3.5" />
                       <span className="hidden sm:inline">Export Certificate</span>
@@ -1038,7 +1077,9 @@ export default function App() {
               </div>
 
               {/* RIGHT COLUMN: FINDINGS STREAM & EVIDENCE CITATIONS (5 Cols) */}
-              <div className="lg:col-span-5 flex flex-col h-full bg-[#070c09]/80 backdrop-blur-sm overflow-hidden border-l border-[#182e22]/80">
+              <div className={`lg:col-span-5 flex-col h-full bg-[#070c09]/80 backdrop-blur-sm overflow-hidden border-l border-[#182e22]/80 ${
+                mobileStudioTab === 'findings' ? 'flex' : 'hidden lg:flex'
+              }`}>
                 {/* Findings Summary Header */}
                 <div className="p-4 border-b border-[#182e22]/80 bg-[#0a130e]/85 backdrop-blur-md space-y-3">
                   <div className="flex items-center justify-between">
@@ -1412,13 +1453,13 @@ export default function App() {
 
         {/* TAB 2: REVIEW QUEUE */}
         {activeTab === 'queue' && (
-          <div className="p-8 max-w-7xl mx-auto space-y-6">
-            <div className="flex items-center justify-between">
+          <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
+            <div className="flex flex-col sm:flex-row gap-2 sm:items-center justify-between">
               <div>
-                <h2 className="text-xl font-bold text-slate-100">Governance Review Queue</h2>
-                <p className="text-sm text-slate-400">Prioritized pre-publication assets awaiting brand, legal, and regional approval.</p>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-100">Governance Review Queue</h2>
+                <p className="text-xs sm:text-sm text-slate-400">Prioritized pre-publication assets awaiting brand, legal, and regional approval.</p>
               </div>
-              <div className="flex space-x-2">
+              <div className="flex space-x-2 self-start sm:self-auto">
                 <span className="px-3 py-1 rounded-lg bg-[#0e1d15] border border-[#1e392a] text-xs font-mono text-emerald-300">
                   Active SLA: 4.0 Hours
                 </span>
@@ -1426,68 +1467,70 @@ export default function App() {
             </div>
 
             <div className="bg-[#0b1410]/80 backdrop-blur-md border border-[#1c3426]/80 rounded-2xl overflow-hidden shadow-2xl">
-              <table className="w-full text-left text-xs text-slate-300">
-                <thead className="bg-[#0f1f16] text-slate-400 font-mono uppercase text-[10px] border-b border-[#1c3426]">
-                  <tr>
-                    <th className="px-6 py-3.5">Campaign Asset</th>
-                    <th className="px-4 py-3.5">Channel</th>
-                    <th className="px-4 py-3.5">Locale</th>
-                    <th className="px-4 py-3.5">Version &amp; Hash</th>
-                    <th className="px-4 py-3.5">Blockers</th>
-                    <th className="px-4 py-3.5">Status</th>
-                    <th className="px-6 py-3.5 text-right">Action</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#15271d]">
-                  <tr className="hover:bg-[#0e1b13] transition-colors">
-                    <td className="px-6 py-4 font-semibold text-slate-200">
-                      {contentItem?.title || "Nadi Radiant Dew Instagram & Social Campaign"}
-                    </td>
-                    <td className="px-4 py-4 uppercase font-mono">{contentItem?.channel || 'social'}</td>
-                    <td className="px-4 py-4 font-mono">{contentItem?.locale || 'en-IN'}</td>
-                    <td className="px-4 py-4 font-mono text-slate-400">
-                      v{contentItem?.current_version} ({contentItem?.current_hash?.substring(0, 8)}...)
-                    </td>
-                    <td className="px-4 py-4">
-                      {reviewRun?.blockers_count > 0 ? (
-                        <span className="px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800 font-mono font-semibold">
-                          {reviewRun.blockers_count} Blocker{reviewRun.blockers_count > 1 ? 's' : ''}
-                        </span>
-                      ) : (
-                        <span className="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono font-semibold">
-                          Clean
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-4 py-4 uppercase font-semibold text-emerald-400">
-                      {contentItem?.status || 'in_review'}
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <button
-                        onClick={() => setActiveTab('studio')}
-                        className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold shadow"
-                      >
-                        Open in Studio
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs text-slate-300 whitespace-nowrap">
+                  <thead className="bg-[#0f1f16] text-slate-400 font-mono uppercase text-[10px] border-b border-[#1c3426]">
+                    <tr>
+                      <th className="px-4 sm:px-6 py-3.5">Campaign Asset</th>
+                      <th className="px-4 py-3.5">Channel</th>
+                      <th className="px-4 py-3.5">Locale</th>
+                      <th className="px-4 py-3.5">Version &amp; Hash</th>
+                      <th className="px-4 py-3.5">Blockers</th>
+                      <th className="px-4 py-3.5">Status</th>
+                      <th className="px-4 sm:px-6 py-3.5 text-right">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#15271d]">
+                    <tr className="hover:bg-[#0e1b13] transition-colors">
+                      <td className="px-4 sm:px-6 py-4 font-semibold text-slate-200">
+                        {contentItem?.title || "Nadi Radiant Dew Instagram & Social Campaign"}
+                      </td>
+                      <td className="px-4 py-4 uppercase font-mono">{contentItem?.channel || 'social'}</td>
+                      <td className="px-4 py-4 font-mono">{contentItem?.locale || 'en-IN'}</td>
+                      <td className="px-4 py-4 font-mono text-slate-400">
+                        v{contentItem?.current_version} ({contentItem?.current_hash?.substring(0, 8)}...)
+                      </td>
+                      <td className="px-4 py-4">
+                        {reviewRun?.blockers_count > 0 ? (
+                          <span className="px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800 font-mono font-semibold">
+                            {reviewRun.blockers_count} Blocker{reviewRun.blockers_count > 1 ? 's' : ''}
+                          </span>
+                        ) : (
+                          <span className="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono font-semibold">
+                            Clean
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-4 py-4 uppercase font-semibold text-emerald-400">
+                        {contentItem?.status || 'in_review'}
+                      </td>
+                      <td className="px-4 sm:px-6 py-4 text-right">
+                        <button
+                          onClick={() => setActiveTab('studio')}
+                          className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold shadow"
+                        >
+                          Open in Studio
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         )}
 
         {/* TAB 3: BRAND LIBRARY & SOURCES */}
         {activeTab === 'sources' && (
-          <div className="p-8 max-w-7xl mx-auto space-y-6">
-            <div className="flex items-center justify-between">
+          <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
               <div>
-                <h2 className="text-xl font-bold text-slate-100">Approved Brand Knowledge Library</h2>
-                <p className="text-sm text-slate-400">Governed data products: formulation specs, claims register, and glossary (IS 02).</p>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-100">Approved Brand Knowledge Library</h2>
+                <p className="text-xs sm:text-sm text-slate-400">Governed data products: formulation specs, claims register, and glossary (IS 02).</p>
               </div>
               <button
                 onClick={() => setShowUploadModal(true)}
-                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-lg flex items-center space-x-1.5 shadow"
+                className="self-start sm:self-auto px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-lg flex items-center space-x-1.5 shadow"
               >
                 <UploadCloud className="w-4 h-4" />
                 <span>Upload Candidate Source</span>
@@ -1496,7 +1539,7 @@ export default function App() {
 
             {/* Source Conflict Alert Banner (IS 33) */}
             {conflicts.length > 0 && (
-              <div className="p-4 rounded-xl bg-amber-950/40 border border-amber-600/70 flex items-start justify-between">
+              <div className="p-4 rounded-xl bg-amber-950/40 border border-amber-600/70 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
                 <div className="flex items-start space-x-3">
                   <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                   <div className="space-y-1">
@@ -1516,7 +1559,7 @@ export default function App() {
 
                 <button
                   onClick={() => setShowConflictWizard(true)}
-                  className="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold rounded-lg shrink-0 shadow self-center"
+                  className="self-start sm:self-center px-3.5 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold rounded-lg shrink-0 shadow"
                 >
                   Resolve Conflict...
                 </button>
@@ -1564,23 +1607,23 @@ export default function App() {
 
         {/* TAB 4: VISUAL & ASSET GOVERNANCE */}
         {activeTab === 'assets' && (
-          <div className="p-8 max-w-7xl mx-auto space-y-6">
+          <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
             <div>
-              <h2 className="text-xl font-bold text-slate-100">Visual &amp; Accessibility Brand Governance</h2>
-              <p className="text-sm text-slate-400">Master logo geometry, aspect ratio constraints, and WCAG 2.1 AA/AAA contrast.</p>
+              <h2 className="text-lg sm:text-xl font-bold text-slate-100">Visual &amp; Accessibility Brand Governance</h2>
+              <p className="text-xs sm:text-sm text-slate-400">Master logo geometry, aspect ratio constraints, and WCAG 2.1 AA/AAA contrast.</p>
             </div>
 
             {/* Interactive Logo Distortion Tool */}
             <LogoInspectorTool />
 
             {/* WCAG Contrast Tool */}
-            <div className="p-6 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 space-y-4 shadow-xl">
+            <div className="p-4 sm:p-6 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 space-y-4 shadow-xl">
               <div className="flex items-center space-x-2">
                 <Eye className="w-5 h-5 text-emerald-400" />
                 <h3 className="font-bold text-slate-100 text-sm">WCAG 2.1 Color Contrast Evaluator (IS 11)</h3>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="text-[11px] text-slate-400 block mb-1">Text Color (Hex)</label>
                   <input
@@ -1637,43 +1680,43 @@ export default function App() {
 
         {/* TAB 5: GOVERNANCE ANALYTICS */}
         {activeTab === 'analytics' && (
-          <div className="p-8 max-w-7xl mx-auto space-y-6">
-            <div className="flex items-center justify-between">
+          <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
+            <div className="flex flex-col sm:flex-row gap-2 sm:items-center justify-between">
               <div>
-                <h2 className="text-xl font-bold text-slate-100">Governance Analytics &amp; Guideline Clarity</h2>
-                <p className="text-sm text-slate-400">Aggregated insights into recurring defects, cycle time, and ambiguous rules (IS 15 &amp; IS 34).</p>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-100">Governance Analytics &amp; Guideline Clarity</h2>
+                <p className="text-xs sm:text-sm text-slate-400">Aggregated insights into recurring defects, cycle time, and ambiguous rules (IS 15 &amp; IS 34).</p>
               </div>
-              <span className="px-3 py-1 rounded-lg bg-[#0e1d15] text-emerald-400 text-xs font-mono border border-[#1f3a2b]">
+              <span className="self-start sm:self-auto px-3 py-1 rounded-lg bg-[#0e1d15] text-emerald-400 text-xs font-mono border border-[#1f3a2b]">
                 Synthetic Demo Data Labeled
               </span>
             </div>
 
             {/* KPI Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
-                <div className="text-xs text-slate-400 uppercase font-medium">Reviews Conducted</div>
-                <div className="text-2xl font-bold text-slate-100 mt-1">{analytics?.metrics?.total_reviews_conducted || 18}</div>
-                <div className="text-[11px] text-emerald-400 mt-1">100% pre-publication gate</div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
+                <div className="text-[10px] sm:text-xs text-slate-400 uppercase font-medium">Reviews Conducted</div>
+                <div className="text-xl sm:text-2xl font-bold text-slate-100 mt-1">{analytics?.metrics?.total_reviews_conducted || 18}</div>
+                <div className="text-[10px] sm:text-[11px] text-emerald-400 mt-1">100% pre-publication gate</div>
               </div>
-              <div className="p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
-                <div className="text-xs text-slate-400 uppercase font-medium">Avg First Feedback</div>
-                <div className="text-2xl font-bold text-emerald-400 mt-1">{analytics?.metrics?.avg_first_feedback_time_seconds || 1.4}s</div>
-                <div className="text-[11px] text-slate-400 mt-1">Instant deterministic engine</div>
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
+                <div className="text-[10px] sm:text-xs text-slate-400 uppercase font-medium">Avg First Feedback</div>
+                <div className="text-xl sm:text-2xl font-bold text-emerald-400 mt-1">{analytics?.metrics?.avg_first_feedback_time_seconds || 1.4}s</div>
+                <div className="text-[10px] sm:text-[11px] text-slate-400 mt-1">Deterministic engine</div>
               </div>
-              <div className="p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
-                <div className="text-xs text-slate-400 uppercase font-medium">Suggestion Acceptance</div>
-                <div className="text-2xl font-bold text-emerald-300 mt-1">{analytics?.metrics?.suggestion_acceptance_rate || '74.2%'}</div>
-                <div className="text-[11px] text-slate-400 mt-1">Single-click patch application</div>
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
+                <div className="text-[10px] sm:text-xs text-slate-400 uppercase font-medium">Suggestion Acceptance</div>
+                <div className="text-xl sm:text-2xl font-bold text-emerald-300 mt-1">{analytics?.metrics?.suggestion_acceptance_rate || '74.2%'}</div>
+                <div className="text-[10px] sm:text-[11px] text-slate-400 mt-1">1-click patch application</div>
               </div>
-              <div className="p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
-                <div className="text-xs text-slate-400 uppercase font-medium">Stale Sources Flagged</div>
-                <div className="text-2xl font-bold text-amber-400 mt-1">{analytics?.metrics?.stale_sources_count || 1}</div>
-                <div className="text-[11px] text-amber-400/80 mt-1">Festive Glow Kit promo expired</div>
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 shadow-lg">
+                <div className="text-[10px] sm:text-xs text-slate-400 uppercase font-medium">Stale Sources Flagged</div>
+                <div className="text-xl sm:text-2xl font-bold text-amber-400 mt-1">{analytics?.metrics?.stale_sources_count || 1}</div>
+                <div className="text-[10px] sm:text-[11px] text-amber-400/80 mt-1">Promo expiration alerts</div>
               </div>
             </div>
 
             {/* Guideline Clarity Analysis (IS 34) */}
-            <div className="p-6 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 space-y-4 shadow-xl">
+            <div className="p-4 sm:p-6 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 space-y-4 shadow-xl">
               <h3 className="font-bold text-slate-100 text-sm flex items-center space-x-2">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
                 <span>Guideline Clarity Gaps &amp; System Recommendations</span>
@@ -1699,15 +1742,15 @@ export default function App() {
 
         {/* TAB 6: SECURITY & AUDIT TRAIL */}
         {activeTab === 'audit' && (
-          <div className="p-8 max-w-7xl mx-auto space-y-6">
+          <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
             <div>
-              <h2 className="text-xl font-bold text-slate-100">Security, Audit &amp; Quality Benchmark Gates</h2>
-              <p className="text-sm text-slate-400">Immutable audit log, prompt injection telemetry, and gold corpus benchmark scores (IS 23 &amp; IS 32).</p>
+              <h2 className="text-lg sm:text-xl font-bold text-slate-100">Security, Audit &amp; Quality Benchmark Gates</h2>
+              <p className="text-xs sm:text-sm text-slate-400">Immutable audit log, prompt injection telemetry, and gold corpus benchmark scores (IS 23 &amp; IS 32).</p>
             </div>
 
             {/* Quality Benchmark Scores (IS 23) */}
             {benchmark && (
-              <div className="p-6 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 space-y-3 shadow-xl">
+              <div className="p-4 sm:p-6 rounded-2xl bg-[#0b1410]/85 backdrop-blur-md border border-[#1b3426]/80 space-y-3 shadow-xl">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-slate-100 text-sm flex items-center space-x-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400" />
@@ -1716,22 +1759,22 @@ export default function App() {
                   <span className="text-xs font-mono text-slate-400">{benchmark.timestamp?.substring(0, 19)}</span>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4 pt-2">
-                  <div className="p-3.5 bg-[#070d0a] rounded-xl border border-[#172b1f]">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 pt-2">
+                  <div className="p-3 sm:p-3.5 bg-[#070d0a] rounded-xl border border-[#172b1f]">
                     <div className="text-[10px] uppercase text-slate-400 font-mono">Precision</div>
-                    <div className="text-lg font-bold text-emerald-400">{benchmark.metrics.precision}%</div>
+                    <div className="text-base sm:text-lg font-bold text-emerald-400">{benchmark.metrics.precision}%</div>
                   </div>
-                  <div className="p-3.5 bg-[#070d0a] rounded-xl border border-[#172b1f]">
+                  <div className="p-3 sm:p-3.5 bg-[#070d0a] rounded-xl border border-[#172b1f]">
                     <div className="text-[10px] uppercase text-slate-400 font-mono">Recall</div>
-                    <div className="text-lg font-bold text-emerald-400">{benchmark.metrics.recall}%</div>
+                    <div className="text-base sm:text-lg font-bold text-emerald-400">{benchmark.metrics.recall}%</div>
                   </div>
-                  <div className="p-3.5 bg-[#070d0a] rounded-xl border border-[#172b1f]">
+                  <div className="p-3 sm:p-3.5 bg-[#070d0a] rounded-xl border border-[#172b1f]">
                     <div className="text-[10px] uppercase text-slate-400 font-mono">Citation Validity</div>
-                    <div className="text-lg font-bold text-emerald-400">{benchmark.metrics.citation_validity_rate}%</div>
+                    <div className="text-base sm:text-lg font-bold text-emerald-400">{benchmark.metrics.citation_validity_rate}%</div>
                   </div>
-                  <div className="p-3.5 bg-[#070d0a] rounded-xl border border-[#172b1f]">
-                    <div className="text-[10px] uppercase text-slate-400 font-mono">Weighted Accuracy</div>
-                    <div className="text-lg font-bold text-emerald-400">{benchmark.metrics.severity_weighted_accuracy}%</div>
+                  <div className="p-3 sm:p-3.5 bg-[#070d0a] rounded-xl border border-[#172b1f]">
+                    <div className="text-[10px] uppercase text-slate-400 font-mono">Weighted Acc.</div>
+                    <div className="text-base sm:text-lg font-bold text-emerald-400">{benchmark.metrics.severity_weighted_accuracy}%</div>
                   </div>
                 </div>
               </div>
@@ -1741,30 +1784,32 @@ export default function App() {
             <div className="space-y-3">
               <h3 className="font-semibold text-slate-200 text-sm">Immutable Audit Trail</h3>
               <div className="bg-[#0b1410]/85 backdrop-blur-md border border-[#1c3426]/80 rounded-2xl overflow-hidden shadow-2xl">
-                <table className="w-full text-left text-xs text-slate-300">
-                  <thead className="bg-[#0f1f16] text-slate-400 font-mono uppercase text-[10px]">
-                    <tr>
-                      <th className="px-4 py-3">Timestamp</th>
-                      <th className="px-4 py-3">Actor</th>
-                      <th className="px-4 py-3">Role</th>
-                      <th className="px-4 py-3">Action</th>
-                      <th className="px-4 py-3">Target</th>
-                      <th className="px-4 py-3">Request ID</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#15271d] font-mono text-[11px]">
-                    {auditLogs.map((log) => (
-                      <tr key={log.id} className="hover:bg-[#0e1b13]">
-                        <td className="px-4 py-3 text-slate-400">{log.timestamp?.substring(11, 19)}</td>
-                        <td className="px-4 py-3 text-slate-200 font-medium">{log.actor_name}</td>
-                        <td className="px-4 py-3 text-slate-400">{log.actor_role}</td>
-                        <td className="px-4 py-3 text-emerald-400">{log.action}</td>
-                        <td className="px-4 py-3 text-slate-300">{log.target_type}</td>
-                        <td className="px-4 py-3 text-slate-500">{log.request_id}</td>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs text-slate-300 whitespace-nowrap">
+                    <thead className="bg-[#0f1f16] text-slate-400 font-mono uppercase text-[10px]">
+                      <tr>
+                        <th className="px-4 py-3">Timestamp</th>
+                        <th className="px-4 py-3">Actor</th>
+                        <th className="px-4 py-3">Role</th>
+                        <th className="px-4 py-3">Action</th>
+                        <th className="px-4 py-3">Target</th>
+                        <th className="px-4 py-3">Request ID</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-[#15271d] font-mono text-[11px]">
+                      {auditLogs.map((log) => (
+                        <tr key={log.id} className="hover:bg-[#0e1b13]">
+                          <td className="px-4 py-3 text-slate-400">{log.timestamp?.substring(11, 19)}</td>
+                          <td className="px-4 py-3 text-slate-200 font-medium">{log.actor_name}</td>
+                          <td className="px-4 py-3 text-slate-400">{log.actor_role}</td>
+                          <td className="px-4 py-3 text-emerald-400">{log.action}</td>
+                          <td className="px-4 py-3 text-slate-300">{log.target_type}</td>
+                          <td className="px-4 py-3 text-slate-500">{log.request_id}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -1824,8 +1869,8 @@ export default function App() {
 
       {/* MODAL: HUMAN OVERRIDE (IS 36) */}
       {showOverrideModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-          <div className="bg-[#0b1410] border border-[#1e382a] rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-4">
+          <div className="bg-[#0b1410] border border-[#1e382a] rounded-2xl max-w-lg w-full p-4 sm:p-6 space-y-4 shadow-2xl max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-[#1b2f23] pb-3">
               <div className="flex items-center space-x-2 text-amber-400">
                 <AlertTriangle className="w-5 h-5" />
@@ -1877,8 +1922,8 @@ export default function App() {
 
       {/* MODAL: EXPORT COMPLIANCE CERTIFICATE (IS 31) */}
       {showExportModal && exportData && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-          <div className="bg-[#0b1410] border border-emerald-500/40 rounded-2xl max-w-2xl w-full p-6 space-y-5 shadow-2xl max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-4">
+          <div className="bg-[#0b1410] border border-emerald-500/40 rounded-2xl max-w-2xl w-full p-4 sm:p-6 space-y-4 sm:space-y-5 shadow-2xl max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-[#1b2f23] pb-3">
               <div className="flex items-center space-x-2">
                 <Shield className="w-5 h-5 text-emerald-400" />
@@ -1889,7 +1934,7 @@ export default function App() {
               </button>
             </div>
 
-            <div className="p-4 rounded-xl bg-[#070d0a] border border-[#172b1f] space-y-2 text-xs font-mono">
+            <div className="p-3 sm:p-4 rounded-xl bg-[#070d0a] border border-[#172b1f] space-y-2 text-xs font-mono">
               <div className="flex justify-between text-slate-400">
                 <span>Certificate Number:</span>
                 <span className="text-emerald-400 font-bold">{exportData.certificate_id}</span>
@@ -1902,9 +1947,9 @@ export default function App() {
                 <span>Content Version:</span>
                 <span>v{exportData.version_number}</span>
               </div>
-              <div className="flex justify-between text-slate-400">
-                <span>Cryptographic SHA-256 Hash:</span>
-                <span className="text-slate-300 text-[10px]">{exportData.content_hash_sha256}</span>
+              <div className="flex flex-col sm:flex-row justify-between text-slate-400 gap-1">
+                <span>SHA-256 Hash:</span>
+                <span className="text-slate-300 text-[10px] break-all">{exportData.content_hash_sha256}</span>
               </div>
               <div className="flex justify-between text-slate-400">
                 <span>Workflow State:</span>
@@ -1929,7 +1974,7 @@ export default function App() {
             <div className="flex justify-end space-x-3 pt-2">
               <button
                 onClick={() => window.print()}
-                className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center space-x-1.5 shadow"
+                className="w-full sm:w-auto px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center justify-center space-x-1.5 shadow"
               >
                 <Download className="w-4 h-4" />
                 <span>Print / Save PDF Certificate</span>
@@ -1948,27 +1993,36 @@ export default function App() {
 
       {/* DRAWER: SOURCE DOCUMENT CHUNKS INSPECTOR */}
       {activeSourceDrawer && (
-        <div className="fixed inset-y-0 right-0 z-50 w-full max-w-lg bg-[#0b1410] border-l border-[#1b3426] shadow-2xl p-6 flex flex-col space-y-4 overflow-y-auto">
-          <div className="flex items-center justify-between border-b border-[#1b2f23] pb-3">
-            <div>
-              <h3 className="font-bold text-slate-100 text-sm">{activeSourceDrawer.title}</h3>
-              <p className="text-xs text-slate-400">Version: {activeSourceDrawer.current_version} • {activeSourceDrawer.owner_name}</p>
-            </div>
-            <button onClick={() => setActiveSourceDrawer(null)} className="text-slate-400 hover:text-white">
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+        <div className="fixed inset-0 z-50 overflow-hidden">
+          {/* Mobile Backdrop */}
+          <div
+            onClick={() => setActiveSourceDrawer(null)}
+            className="fixed inset-0 bg-black/70 backdrop-blur-xs transition-opacity"
+          />
+          <div className="fixed inset-y-0 right-0 max-w-full flex">
+            <div className="w-screen max-w-lg bg-[#0b1410] border-l border-[#1b3426] shadow-2xl p-4 sm:p-6 flex flex-col space-y-4 overflow-y-auto relative z-10">
+              <div className="flex items-center justify-between border-b border-[#1b2f23] pb-3">
+                <div>
+                  <h3 className="font-bold text-slate-100 text-sm">{activeSourceDrawer.title}</h3>
+                  <p className="text-xs text-slate-400">Version: {activeSourceDrawer.current_version} • {activeSourceDrawer.owner_name}</p>
+                </div>
+                <button onClick={() => setActiveSourceDrawer(null)} className="text-slate-400 hover:text-white p-1 rounded">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-          <div className="text-xs font-mono bg-[#070d0a] p-3 rounded-xl border border-[#16291e] text-slate-400 space-y-1">
-            <div>Source ID: {activeSourceDrawer.id}</div>
-            <div>Content Hash: {activeSourceDrawer.content_hash}</div>
-            <div>Approval State: {activeSourceDrawer.approval_state}</div>
-          </div>
+              <div className="text-xs font-mono bg-[#070d0a] p-3 rounded-xl border border-[#16291e] text-slate-400 space-y-1">
+                <div>Source ID: {activeSourceDrawer.id}</div>
+                <div>Content Hash: {activeSourceDrawer.content_hash}</div>
+                <div>Approval State: {activeSourceDrawer.approval_state}</div>
+              </div>
 
-          <div className="space-y-3 flex-1">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-emerald-400">Canonical Content</h4>
-            <div className="p-4 rounded-xl bg-[#070d0a] border border-[#16291e] text-xs text-slate-200 leading-relaxed whitespace-pre-wrap font-sans">
-              {activeSourceDrawer.raw_content}
+              <div className="space-y-3 flex-1">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-emerald-400">Canonical Content</h4>
+                <div className="p-4 rounded-xl bg-[#070d0a] border border-[#16291e] text-xs text-slate-200 leading-relaxed whitespace-pre-wrap font-sans">
+                  {activeSourceDrawer.raw_content}
+                </div>
+              </div>
             </div>
           </div>
         </div>
