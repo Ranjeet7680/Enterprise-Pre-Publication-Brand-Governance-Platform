@@ -232,6 +232,56 @@ def list_sources(workspace_id: str = "ws-nadi-naturals-main"):
     return sources
 
 
+@app.post("/v1/sources")
+def create_source_document(payload: CreateSourceDocumentRequest):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    sid = f"src-{uuid.uuid4().hex[:8]}"
+    h = compute_sha256(payload.raw_content)
+    now_iso = datetime.now(timezone.utc).isoformat()
+    eff_until = payload.effective_until.isoformat() if payload.effective_until else None
+    
+    # Auto-generate semantic chunk
+    chunks = [{
+        "id": f"chk-{uuid.uuid4().hex[:6]}",
+        "source_id": sid,
+        "source_version": 1,
+        "section": "General",
+        "content": payload.raw_content.strip(),
+        "page_number": 1
+    }]
+
+    cursor.execute(
+        """INSERT INTO source_documents (
+            id, workspace_id, tenant_id, title, doc_type, current_version, approval_state,
+            owner_id, owner_name, effective_from, effective_until, content_hash, raw_content,
+            chunks, created_at, approved_at, approved_by
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        (
+            sid,
+            payload.workspace_id,
+            payload.tenant_id,
+            payload.title,
+            payload.doc_type,
+            1,
+            SourceApprovalState.CANDIDATE.value,  # IS 02 Quarantine
+            payload.owner_id,
+            payload.owner_name,
+            now_iso,
+            eff_until,
+            h,
+            payload.raw_content.strip(),
+            json.dumps(chunks),
+            now_iso,
+            None,
+            None
+        )
+    )
+    conn.commit()
+    conn.close()
+    return {"status": "created", "source_id": sid, "approval_state": "candidate"}
+
+
 @app.post("/v1/sources/{source_id}/approve")
 def approve_source(source_id: str, approver_id: str = "usr-priya"):
     conn = get_db_connection()
